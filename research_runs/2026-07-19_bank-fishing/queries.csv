@@ -1,0 +1,51 @@
+query_id,activity_id,seed_id,evidence_goal,template_id,query,region,generated_at,status
+query-0001,act-fishing-bank-fishing,seed-0085,complaint,q-complaint,"Bank fishing change lure, hook, or bait annoying",United States,2026-07-19,unsearched
+query-0002,act-fishing-bank-fishing,seed-0085,complaint,q-hard-to,"Bank fishing hard to change lure, hook, or bait",United States,2026-07-19,unsearched
+query-0003,act-fishing-bank-fishing,seed-0085,complaint,q-wish,Bank fishing wish it had small_parts,United States,2026-07-19,unsearched
+query-0004,act-fishing-bank-fishing,seed-0085,workaround,q-workaround,"Bank fishing change lure, hook, or bait DIY modification",United States,2026-07-19,unsearched
+query-0005,act-fishing-bank-fishing,seed-0085,workaround,q-cut,Bank fishing cut sewed taped repurposed,United States,2026-07-19,unsearched
+query-0006,act-fishing-bank-fishing,seed-0085,context,q-gloves,"Bank fishing change lure, hook, or bait with gloves",United States,2026-07-19,unsearched
+query-0007,act-fishing-bank-fishing,seed-0085,context,q-wet,"Bank fishing change lure, hook, or bait wet hands",United States,2026-07-19,unsearched
+query-0008,act-fishing-bank-fishing,seed-0085,context,q-onehand,"Bank fishing change lure, hook, or bait one handed",United States,2026-07-19,unsearched
+query-0009,act-fishing-bank-fishing,seed-0085,context,q-dark,"Bank fishing change lure, hook, or bait in the dark",United States,2026-07-19,unsearched
+query-0010,act-fishing-bank-fishing,seed-0085,competition,q-review,Bank fishing tethered small-parts workstation review problem,United States,2026-07-19,unsearched
+query-0011,act-fishing-bank-fishing,seed-0085,competition,q-return,tethered small-parts workstation returned broke leaked,United States,2026-07-19,unsearched
+query-0012,act-fishing-bank-fishing,seed-0085,price,q-price,tethered small-parts workstation price buy,United States,2026-07-19,unsearched
+query-0013,act-fishing-bank-fishing,seed-0085,seasonality,q-season,Bank fishing trend 2026 United States,United States,2026-07-19,unsearched
+query-0014,act-fishing-bank-fishing,seed-0085,falsification,q-falsify,Bank fishing no need for tethered small-parts workstation,United States,2026-07-19,unsearched
+query-0015,act-fishing-bank-fishing,seed-0085,competition,q-best,best tethered small-parts workstation for Bank fishing,United States,2026-07-19,unsearched
+query-0016,act-fishing-bank-fishing,seed-0085,community,q-forum,"Bank fishing forum change lure, hook, or bait problem",United States,2026-07-19,unsearched
+query-0017,act-fishing-bank-fishing,seed-0085,behavior,q-video,"Bank fishing how I change lure, hook, or bait",United States,2026-07-19,unsearched
+query-0018,act-fishing-bank-fishing,seed-0085,workaround,q-3dprint,"Bank fishing change lure, hook, or bait 3D print",United States,2026-07-19,unsearched
+query-0019,act-fishing-bank-fishing,seed-0086,complaint,q-complaint,Bank fishing stage rod and tools annoying,United States,2026-07-19,unsearched
+query-0020,act-fishing-bank-fishing,seed-0086,complaint,q-hard-to,Bank fishing hard to stage rod and tools,United States,2026-07-19,unsearched
+query-0021,act-fishing-bank-fishing,seed-0086,complaint,q-wish,Bank fishing wish it had object_retention,United States,2026-07-19,unsearched
+query-0022,act-fishing-bank-fishing,seed-0086,workaround,q-workaround,Bank fishing stage rod and tools DIY modification,United States,2026-07-19,unsearched
+query-0023,act-fishing-bank-fishing,seed-0086,context,q-gloves,Bank fishing stage rod and tools with gloves,United States,2026-07-19,unsearched
+query-0024,act-fishing-bank-fishing,seed-0086,context,q-wet,Bank fishing stage rod and tools wet hands,United States,2026-07-19,unsearched
+query-0025,act-fishing-bank-fishing,seed-0086,context,q-onehand,Bank fishing stage rod and tools one handed,United States,2026-07-19,unsearched
+query-0026,act-fishing-bank-fishing,seed-0086,context,q-dark,Bank fishing stage rod and tools in the dark,United States,2026-07-19,unsearched
+query-0027,act-fishing-bank-fishing,seed-0086,competition,q-review,Bank fishing portable rod/tool retention interface review problem,United States,2026-07-19,unsearched
+query-0028,act-fishing-bank-fishing,seed-0086,competition,q-return,portable rod/tool retention interface returned broke leaked,United States,2026-07-19,unsearched
+query-0029,act-fishing-bank-fishing,seed-0086,price,q-price,portable rod/tool retention interface price buy,United States,2026-07-19,unsearched
+query-0030,act-fishing-bank-fishing,seed-0086,falsification,q-falsify,Bank fishing no need for portable rod/tool retention interface,United States,2026-07-19,unsearched
+query-0031,act-fishing-bank-fishing,seed-0086,competition,q-best,best portable rod/tool retention interface for Bank fishing,United States,2026-07-19,unsearched
+query-0032,act-fishing-bank-fishing,seed-0086,community,q-forum,Bank fishing forum stage rod and tools problem,United States,2026-07-19,unsearched
+query-0033,act-fishing-bank-fishing,seed-0086,behavior,q-video,Bank fishing how I stage rod and tools,United States,2026-07-19,unsearched
+query-0034,act-fishing-bank-fishing,seed-0086,workaround,q-3dprint,Bank fishing stage rod and tools 3D print,United States,2026-07-19,unsearched
+query-0035,act-fishing-bank-fishing,seed-0087,complaint,q-complaint,"Bank fishing separate catch, bait, and clean gear annoying",United States,2026-07-19,unsearched
+query-0036,act-fishing-bank-fishing,seed-0087,complaint,q-hard-to,"Bank fishing hard to separate catch, bait, and clean gear",United States,2026-07-19,unsearched
+query-0037,act-fishing-bank-fishing,seed-0087,complaint,q-wish,Bank fishing wish it had dirty_clean_transition,United States,2026-07-19,unsearched
+query-0038,act-fishing-bank-fishing,seed-0087,workaround,q-workaround,"Bank fishing separate catch, bait, and clean gear DIY modification",United States,2026-07-19,unsearched
+query-0039,act-fishing-bank-fishing,seed-0087,context,q-gloves,"Bank fishing separate catch, bait, and clean gear with gloves",United States,2026-07-19,unsearched
+query-0040,act-fishing-bank-fishing,seed-0087,context,q-wet,"Bank fishing separate catch, bait, and clean gear wet hands",United States,2026-07-19,unsearched
+query-0041,act-fishing-bank-fishing,seed-0087,context,q-onehand,"Bank fishing separate catch, bait, and clean gear one handed",United States,2026-07-19,unsearched
+query-0042,act-fishing-bank-fishing,seed-0087,context,q-dark,"Bank fishing separate catch, bait, and clean gear in the dark",United States,2026-07-19,unsearched
+query-0043,act-fishing-bank-fishing,seed-0087,competition,q-review,Bank fishing washable modular wet/dirty containment review problem,United States,2026-07-19,unsearched
+query-0044,act-fishing-bank-fishing,seed-0087,competition,q-return,washable modular wet/dirty containment returned broke leaked,United States,2026-07-19,unsearched
+query-0045,act-fishing-bank-fishing,seed-0087,price,q-price,washable modular wet/dirty containment price buy,United States,2026-07-19,unsearched
+query-0046,act-fishing-bank-fishing,seed-0087,falsification,q-falsify,Bank fishing no need for washable modular wet/dirty containment,United States,2026-07-19,unsearched
+query-0047,act-fishing-bank-fishing,seed-0087,competition,q-best,best washable modular wet/dirty containment for Bank fishing,United States,2026-07-19,unsearched
+query-0048,act-fishing-bank-fishing,seed-0087,community,q-forum,"Bank fishing forum separate catch, bait, and clean gear problem",United States,2026-07-19,unsearched
+query-0049,act-fishing-bank-fishing,seed-0087,behavior,q-video,"Bank fishing how I separate catch, bait, and clean gear",United States,2026-07-19,unsearched
+query-0050,act-fishing-bank-fishing,seed-0087,workaround,q-3dprint,"Bank fishing separate catch, bait, and clean gear 3D print",United States,2026-07-19,unsearched

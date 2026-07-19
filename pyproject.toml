@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trail-signal-os"
+version = "1.0.0"
+description = "Evidence-first outdoor product niche research toolkit"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+niche-research = "niche_research.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

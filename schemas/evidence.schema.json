@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence.schema.json",
+  "title": "Research Evidence",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "candidate_id",
+    "evidence_type",
+    "polarity",
+    "source_id",
+    "observation",
+    "retrieved_at",
+    "independence_group",
+    "confidence"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^ev-[a-z0-9-]+$"
+    },
+    "research_run_id": {
+      "type": "string"
+    },
+    "candidate_id": {
+      "type": "string",
+      "pattern": "^nc-[0-9]{3,}$"
+    },
+    "claim_id": {
+      "type": "string"
+    },
+    "evidence_type": {
+      "enum": [
+        "behavior",
+        "workaround",
+        "demand",
+        "competition",
+        "seasonality",
+        "operations",
+        "risk",
+        "contradiction",
+        "price"
+      ]
+    },
+    "polarity": {
+      "enum": [
+        "supporting",
+        "contradicting",
+        "neutral"
+      ]
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "source_class": {
+      "type": "string"
+    },
+    "source_url_or_identifier": {
+      "type": "string"
+    },
+    "query_or_path": {
+      "type": "string"
+    },
+    "observation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metric_name": {
+      "type": "string"
+    },
+    "metric_value": {
+      "type": [
+        "number",
+        "string",
+        "null"
+      ]
+    },
+    "metric_unit": {
+      "type": "string"
+    },
+    "geography": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "observed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "independence_group": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "limitations": {
+      "type": "string"
+    },
+    "raw_artifact_path": {
+      "type": "string"
+    },
+    "supersedes_evidence_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

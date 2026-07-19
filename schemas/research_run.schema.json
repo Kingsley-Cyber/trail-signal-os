@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "research_run.schema.json",
+  "title": "Research Run",
+  "type": "object",
+  "required": [
+    "research_run_id",
+    "candidate_id",
+    "state",
+    "created_at",
+    "research_questions"
+  ],
+  "properties": {
+    "research_run_id": {
+      "type": "string",
+      "pattern": "^run-[a-z0-9-]+$"
+    },
+    "candidate_id": {
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "seed",
+        "researching",
+        "evidence_ready",
+        "red_team",
+        "experiment_ready",
+        "validated",
+        "rejected",
+        "stale"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_updated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "research_questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_gates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocked_assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

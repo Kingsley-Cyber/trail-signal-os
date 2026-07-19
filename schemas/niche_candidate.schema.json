@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "niche_candidate.schema.json",
+  "title": "Niche Candidate",
+  "type": "object",
+  "required": [
+    "candidate_id",
+    "activity_id",
+    "candidate_title",
+    "product_hypothesis",
+    "fact_status",
+    "research_state",
+    "behavior_frequency",
+    "friction_severity",
+    "workaround_strength",
+    "complaint_repetition",
+    "product_simplicity",
+    "shipping_fit",
+    "margin_potential",
+    "return_risk_inverse",
+    "community_reachability",
+    "competition_gap",
+    "seasonal_timing",
+    "expansion_potential",
+    "risk_inverse"
+  ],
+  "properties": {
+    "behavior_frequency": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "friction_severity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "workaround_strength": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "complaint_repetition": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "product_simplicity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "shipping_fit": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "margin_potential": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "return_risk_inverse": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "community_reachability": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "competition_gap": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "seasonal_timing": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "expansion_potential": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "risk_inverse": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "candidate_id": {
+      "type": "string",
+      "pattern": "^nc-[0-9]{3,}$"
+    },
+    "activity_id": {
+      "type": "string"
+    },
+    "candidate_title": {
+      "type": "string"
+    },
+    "product_hypothesis": {
+      "type": "string"
+    },
+    "fact_status": {
+      "enum": [
+        "observed",
+        "inferred",
+        "hypothesis",
+        "unknown",
+        "contradicted"
+      ]
+    },
+    "research_state": {
+      "enum": [
+        "seed",
+        "researching",
+        "evidence_ready",
+        "red_team",
+        "experiment_ready",
+        "validated",
+        "rejected",
+        "stale"
+      ]
+    },
+    "hard_gates_passed": {
+      "type": "boolean"
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

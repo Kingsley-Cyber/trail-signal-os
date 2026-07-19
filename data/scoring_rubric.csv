@@ -1,0 +1,14 @@
+dimension,weight,score_1,score_2,score_3,score_4,score_5,evidence_required
+behavior_frequency,1.2,Rare/annual,Monthly or irregular,Weekly,Several times weekly,Daily/repeated sessions,Evidence IDs required after seed stage
+friction_severity,1.3,Cosmetic only,Minor annoyance,Noticeable delay/discomfort,"Causes loss, repeat failure, or strong discomfort","Ends activity, damages equipment, or creates major recurring burden",Evidence IDs required after seed stage
+workaround_strength,1.4,No workaround,One speculative workaround,Several weak adaptations,Repeated modifications/repurposing,Independent users build or buy substitutes and explain why,Evidence IDs required after seed stage
+complaint_repetition,1.2,No complaints,Isolated complaint,Several same-theme complaints,Repeated across communities/listings,"Large, independent and current repetition",Evidence IDs required after seed stage
+product_simplicity,0.8,Complex regulated system,Many parts/tooling,Moderate design,Simple accessory with testing,Very simple interface and clear QC,Evidence IDs required after seed stage
+shipping_fit,0.7,Hazardous/oversize/fragile,High dimensional weight,Moderate shipping burden,Small and durable,Flat/light/durable and easy to pack,Evidence IDs required after seed stage
+margin_potential,1.0,No plausible margin,Weak after fees/returns,Unknown/moderate,Healthy provisional margin,Strong value-to-landed-cost with price evidence,Evidence IDs required after seed stage
+return_risk_inverse,0.8,High subjective fit/compatibility,Many variants,Moderate return causes,Few variants and measurable fit,Universal or clearly compatible; low subjective risk,Evidence IDs required after seed stage
+community_reachability,1.0,No identifiable audience,Diffuse audience,Several communities,Distinct language and channels,Highly identifiable and creative-friendly community,Evidence IDs required after seed stage
+competition_gap,1.3,Dominant complete solutions,Crowded parity,Some unresolved review themes,Clear repeated interface gap,Large gap with weak substitutes and no strong incumbent response,Evidence IDs required after seed stage
+seasonal_timing,0.7,Window missed/unknown,Very narrow volatile spike,Predictable but limited,Strong recurring or regional windows,Evergreen base plus multiple predictable activation windows,Evidence IDs required after seed stage
+expansion_potential,0.8,One-off SKU,Few variants,Some adjacent uses,Clear bundles/variants,Reusable platform across activities and components,Evidence IDs required after seed stage
+risk_inverse,1.0,Unacceptable safety/legal risk,Material unresolved risk,Manageable with review,Low-risk accessory,"Minimal safety, regulatory, IP, and policy exposure",Evidence IDs required after seed stage

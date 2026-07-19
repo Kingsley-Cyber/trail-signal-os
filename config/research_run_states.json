@@ -1,0 +1,46 @@
+{
+  "states": [
+    "seed",
+    "researching",
+    "evidence_ready",
+    "red_team",
+    "experiment_ready",
+    "validated",
+    "rejected",
+    "stale"
+  ],
+  "allowed_transitions": {
+    "seed": [
+      "researching"
+    ],
+    "researching": [
+      "evidence_ready",
+      "rejected",
+      "stale"
+    ],
+    "evidence_ready": [
+      "red_team",
+      "researching",
+      "rejected"
+    ],
+    "red_team": [
+      "experiment_ready",
+      "researching",
+      "rejected"
+    ],
+    "experiment_ready": [
+      "validated",
+      "researching",
+      "rejected"
+    ],
+    "validated": [
+      "stale"
+    ],
+    "rejected": [
+      "researching"
+    ],
+    "stale": [
+      "researching"
+    ]
+  }
+}

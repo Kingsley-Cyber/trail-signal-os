@@ -1,0 +1,2 @@
+research_run_id,candidate_id,slug,path,state,created_at,last_updated_at,owner,notes
+run-2026-07-19-bank-fishing,nc-001,bank-fishing,research_runs/2026-07-19_bank-fishing,researching,2026-07-19,2026-07-19,example,Example run structure; evidence rows are illustrative placeholders only.

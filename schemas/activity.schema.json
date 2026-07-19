@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "activity.schema.json",
+  "title": "Activity",
+  "type": "object",
+  "required": [
+    "activity_id",
+    "domain",
+    "activity",
+    "fact_status"
+  ],
+  "properties": {
+    "activity_id": {
+      "type": "string",
+      "pattern": "^act-[a-z0-9-]+$"
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "participant": {
+      "type": "string"
+    },
+    "fact_status": {
+      "enum": [
+        "observed",
+        "inferred",
+        "hypothesis",
+        "unknown",
+        "contradicted"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_verified_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    }
+  },
+  "additionalProperties": true
+}

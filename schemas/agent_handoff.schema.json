@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_handoff.schema.json",
+  "title": "Agent Handoff",
+  "type": "object",
+  "required": [
+    "task_id",
+    "candidate_id",
+    "role",
+    "action",
+    "input_artifacts",
+    "expected_output_schema",
+    "completion_checks"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "candidate_id": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "input_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_output_schema": {
+      "type": "string"
+    },
+    "evidence_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocked_assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completion_checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

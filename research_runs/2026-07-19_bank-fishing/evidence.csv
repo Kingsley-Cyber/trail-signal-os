@@ -1,0 +1,1 @@
+evidence_id,research_run_id,candidate_id,claim_id,evidence_type,polarity,source_id,source_class,source_title,source_url_or_identifier,query_or_path,observation,metric_name,metric_value,metric_unit,geography,language,observed_at,retrieved_at,independence_group,confidence,limitations,raw_artifact_path,supersedes_evidence_id,analyst

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "seasonal_signal.schema.json",
+  "title": "Seasonal Signal",
+  "type": "object",
+  "required": [
+    "signal_id",
+    "candidate_id",
+    "signal_type",
+    "region",
+    "observed_at",
+    "confidence"
+  ],
+  "properties": {
+    "signal_id": {
+      "type": "string",
+      "pattern": "^sig-[a-z0-9-]+$"
+    },
+    "candidate_id": {
+      "type": "string"
+    },
+    "signal_type": {
+      "enum": [
+        "weather",
+        "calendar",
+        "lifecycle",
+        "participation",
+        "retail",
+        "trend",
+        "regional_offset"
+      ]
+    },
+    "region": {
+      "type": "string"
+    },
+    "hemisphere": {
+      "enum": [
+        "northern",
+        "southern",
+        "equatorial",
+        "unknown"
+      ]
+    },
+    "window_start": {
+      "type": "string"
+    },
+    "window_end": {
+      "type": "string"
+    },
+    "purchase_lead_days": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "signal_value": {
+      "type": [
+        "number",
+        "string",
+        "null"
+      ]
+    },
+    "signal_unit": {
+      "type": "string"
+    },
+    "source_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "next_verify_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

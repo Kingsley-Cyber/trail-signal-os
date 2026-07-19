@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "rules": [
+    {
+      "id": "weather_lead",
+      "description": "Research weather-dependent categories 8-16 weeks before expected use."
+    },
+    {
+      "id": "event_lead",
+      "description": "Research event-dependent categories 6-12 weeks before purchase window."
+    },
+    {
+      "id": "hemisphere",
+      "description": "Record hemisphere and region; never apply U.S. timing globally."
+    },
+    {
+      "id": "normal_vs_forecast",
+      "description": "Climate normals describe baseline seasonality; forecasts describe near-term timing."
+    },
+    {
+      "id": "signal_confirmation",
+      "description": "Require at least two independent seasonal signals before timing a launch."
+    }
+  ]
+}

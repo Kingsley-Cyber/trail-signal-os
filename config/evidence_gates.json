@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "hard_gates": [
+    {
+      "id": "g1",
+      "name": "independent_complaints",
+      "minimum": 10,
+      "unit": "unique observations"
+    },
+    {
+      "id": "g2",
+      "name": "workaround_examples",
+      "minimum": 3,
+      "unit": "independent examples"
+    },
+    {
+      "id": "g3",
+      "name": "source_diversity",
+      "minimum": 3,
+      "unit": "source classes"
+    },
+    {
+      "id": "g4",
+      "name": "competitor_review_analysis",
+      "minimum": 2,
+      "unit": "products or substitute categories"
+    },
+    {
+      "id": "g5",
+      "name": "current_price_checks",
+      "minimum": 3,
+      "unit": "sellers or listings"
+    },
+    {
+      "id": "g6",
+      "name": "risk_review",
+      "minimum": 1,
+      "unit": "completed checklist"
+    },
+    {
+      "id": "g7",
+      "name": "falsification_test",
+      "minimum": 1,
+      "unit": "defined experiment"
+    }
+  ],
+  "promotion_rule": "all_hard_gates_true"
+}

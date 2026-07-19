@@ -1,0 +1,21 @@
+domain_id,domain,display_name,activity_count,seed_row_count,research_priority,notes
+dom-01,walking_running_movement,Walking Running Movement,28,84,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-02,fishing_shoreline,Fishing Shoreline,28,84,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-03,camping_field_living,Camping Field Living,30,90,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-04,paddling_boating_water,Paddling Boating Water,28,84,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-05,cycling_wheeled,Cycling Wheeled,22,66,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-06,winter_weather,Winter Weather,22,66,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-07,nature_observation_recording,Nature Observation Recording,24,72,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-08,foraging_collecting,Foraging Collecting,22,66,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-09,garden_yard_homestead,Garden Yard Homestead,30,90,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-10,outdoor_cooking_fire,Outdoor Cooking Fire,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-11,property_water_care,Property Water Care,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-12,outdoor_spectating_waiting,Outdoor Spectating Waiting,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-13,picnic_park_temporary_setup,Picnic Park Temporary Setup,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-14,recreational_field_sports,Recreational Field Sports,24,72,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-15,technical_skill_hobbies,Technical Skill Hobbies,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-16,vehicle_supported_outdoors,Vehicle Supported Outdoors,22,66,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-17,stewardship_volunteering,Stewardship Volunteering,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-18,outdoors_with_children,Outdoors With Children,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-19,outdoors_with_animals,Outdoors With Animals,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.
+dom-20,adaptive_lower_intensity,Adaptive Lower Intensity,20,60,medium,Broad behavior family; prioritize atomic tasks rather than category-level products.

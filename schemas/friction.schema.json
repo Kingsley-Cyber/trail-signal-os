@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "friction.schema.json",
+  "title": "Friction",
+  "type": "object",
+  "required": [
+    "friction_id",
+    "friction_family",
+    "definition"
+  ],
+  "properties": {
+    "friction_id": {
+      "type": "string",
+      "pattern": "^fr-[a-z0-9-]+$"
+    },
+    "friction_family": {
+      "type": "string"
+    },
+    "definition": {
+      "type": "string"
+    },
+    "task": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string"
+    },
+    "observable_metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "workaround_markers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

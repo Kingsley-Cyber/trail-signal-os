@@ -1,0 +1,13 @@
+season_id,season_name,signal_type,region,hemisphere,research_window_start,research_window_end,recommended_lead_weeks,relevant_entities,verification_sources,fact_status,last_verified_at
+season-001,Spring thaw and mud transition,weather,US/Canada temperate,northern,02-15,05-15,8-12,mud;wet gear;dog walking;trail access;yard reopening,NOAA baseline plus current regional forecast,hypothesis,2026-07-19
+season-002,Garden planting and yard startup,lifecycle,US temperate,northern,02-01,06-01,8-16,gardening;irrigation;tool access;kneeling,"local frost dates, climate normals, retailer timing",hypothesis,2026-07-19
+season-003,Summer water recreation,weather_calendar,US,northern,03-15,08-31,8-16,beach;paddling;swimming;boating;wet-dry transitions,"climate normals, school calendar, visitation, trend signals",hypothesis,2026-07-19
+season-004,Camping peak preparation,calendar_weather,US,northern,02-15,09-30,8-16,camping;field living;family setup;lighting,"regional weather, visitation, query interest",hypothesis,2026-07-19
+season-005,Fishing open-water cycle,weather_participation,US regional,northern,02-01,11-15,8-16,bank;pier;kayak;boat fishing,"regional regulations, water/weather, query and marketplace evidence",hypothesis,2026-07-19
+season-006,Fall hunting-adjacent and observation,participation,US regional,northern,07-01,12-15,8-12,birding;wildlife watching;field observation;cold dexterity,regional calendar and participation evidence,hypothesis,2026-07-19
+season-007,Youth fall sports sidelines,calendar_weather,US,northern,06-01,11-30,6-12,sideline warmth;rain;carry systems,"league/school calendars, regional weather, query interest",hypothesis,2026-07-19
+season-008,"Leaf, firewood, and property closeout",lifecycle_weather,US temperate,northern,07-01,12-15,8-12,leaf collection;firewood;cottage closing;storage,"climate normals, local calendars, product signals",hypothesis,2026-07-19
+season-009,Winter snow and cold work,weather,US snow regions,northern,08-01,03-31,8-16,snow clearing;cold dexterity;visibility;thermal transitions,NOAA normals plus forecasts and regional snow data,hypothesis,2026-07-19
+season-010,Holiday outdoor gifting,retail_calendar,US,northern,08-15,12-25,10-16,giftable hobby accessories;bundles,"query trends, marketplace, creative and retailer evidence",hypothesis,2026-07-19
+season-011,New-year fitness outdoors,calendar,US,northern,10-01,02-28,6-12,walking;running;rucking;visibility;cold weather,"query interest, creative signals, weather",hypothesis,2026-07-19
+season-012,Southern hemisphere offset,regional_offset,Southern hemisphere,southern,01-01,12-31,region-specific,all seasonal activities,local climate and calendar sources only,rule,2026-07-19

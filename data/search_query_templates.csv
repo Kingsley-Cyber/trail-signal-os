@@ -1,0 +1,19 @@
+template_id,evidence_goal,template,notes,enabled
+q-complaint,complaint,{activity} {task} annoying,Find direct complaint language.,true
+q-hard-to,complaint,{activity} hard to {task},Find task difficulty.,true
+q-wish,complaint,{activity} wish it had {friction_family},Find missing feature language.,true
+q-workaround,workaround,{activity} {task} DIY modification,Find improvised solutions.,true
+q-cut,workaround,{activity} cut sewed taped repurposed,Find physical modifications.,true
+q-gloves,context,{activity} {task} with gloves,Test dexterity constraint.,true
+q-wet,context,{activity} {task} wet hands,Test wet-hand constraint.,true
+q-onehand,context,{activity} {task} one handed,Test occupied-hand constraint.,true
+q-dark,context,{activity} {task} in the dark,Test low-light constraint.,true
+q-review,competition,{activity} {product_territory} review problem,Find incumbent deficiencies.,true
+q-return,competition,{product_territory} returned broke leaked,Find failure and return causes.,true
+q-price,price,{product_territory} price buy,Collect current comparable prices.,true
+q-season,seasonality,{activity} trend {current_year} {region},Find current timing signals.,true
+q-falsify,falsification,{activity} no need for {product_territory},Search substitutes and rejection reasons.,true
+q-best,competition,best {product_territory} for {activity},"Map incumbents, not validate demand.",true
+q-forum,community,{activity} forum {task} problem,Locate specialist language.,true
+q-video,behavior,{activity} how I {task},Observe actual field workflow.,true
+q-3dprint,workaround,{activity} {task} 3D print,Find unmet interface workarounds.,true

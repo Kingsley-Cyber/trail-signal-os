@@ -1,0 +1,1 @@
+Follow `/AGENTS.md`. This repository is an evidence-first product-niche research system. Preserve stable CSV columns, append evidence rather than replacing it, distinguish facts from hypotheses, use ISO dates, and execute validation/tests after code changes.
