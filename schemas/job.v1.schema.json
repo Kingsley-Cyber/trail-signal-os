@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "job.v1.schema.json",
+  "title": "Job v1",
+  "description": "Research or dossier job record (control_plane_v4 §3).",
+  "type": "object",
+  "required": [
+    "job_id",
+    "job_kind",
+    "status",
+    "budget",
+    "config_hash",
+    "provenance",
+    "schema_version"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "pattern": "^job_[a-zA-Z0-9_-]+$"
+    },
+    "parent_job_id": {
+      "type": ["string", "null"],
+      "pattern": "^job_[a-zA-Z0-9_-]+$"
+    },
+    "job_kind": {
+      "enum": ["dossier", "collection", "scoring", "validation", "decision"]
+    },
+    "niche_id": { "type": "string" },
+    "constraints_ref": { "type": "string" },
+    "status": {
+      "enum": [
+        "CREATED",
+        "PLANNING",
+        "DISCOVERING",
+        "ACQUIRING",
+        "EXTRACTING",
+        "INDEXING",
+        "SYNTHESIZING",
+        "COMPLETED",
+        "PAUSED",
+        "CANCEL_REQUESTED",
+        "CANCELLED",
+        "FAILED",
+        "COMPLETED_WITH_GAPS"
+      ]
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ttl_seconds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "config_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "deadline_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "budget": {
+      "type": "object",
+      "required": [
+        "max_queries",
+        "max_fetched_urls",
+        "per_domain_urls",
+        "browser_pages",
+        "media_items",
+        "max_bytes",
+        "deadline_minutes",
+        "max_attempts",
+        "llm_budget",
+        "schema_version"
+      ],
+      "properties": {
+        "max_queries": { "type": "integer", "minimum": 0 },
+        "max_fetched_urls": { "type": "integer", "minimum": 0 },
+        "per_domain_urls": { "type": "integer", "minimum": 0 },
+        "browser_pages": { "type": "integer", "minimum": 0 },
+        "media_items": { "type": "integer", "minimum": 0 },
+        "max_bytes": { "type": "integer", "minimum": 0 },
+        "deadline_minutes": { "type": "integer", "minimum": 1 },
+        "max_attempts": { "type": "integer", "minimum": 1 },
+        "llm_budget": {
+          "type": "object",
+          "required": ["max_calls", "max_tokens", "max_usd"],
+          "properties": {
+            "max_calls": { "type": "integer", "minimum": 0 },
+            "max_tokens": { "type": "integer", "minimum": 0 },
+            "max_usd": { "type": "number", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "schema_version": { "const": "budget.v1" }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["schema_version", "config_hash", "created_at"],
+      "properties": {
+        "schema_version": { "const": "job.v1" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "const": "job.v1"
+    }
+  },
+  "additionalProperties": false
+}

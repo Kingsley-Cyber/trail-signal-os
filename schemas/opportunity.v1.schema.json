@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "opportunity.v1.schema.json",
+  "title": "Opportunity v1",
+  "description": "Scored candidate. score/subscores are deterministic engine output only (LAW 1).",
+  "type": "object",
+  "required": [
+    "opportunity_id",
+    "niche_id",
+    "candidate",
+    "score",
+    "subscores",
+    "confidence",
+    "coverage_gaps",
+    "scored_from",
+    "generating_queries",
+    "provenance",
+    "as_of",
+    "schema_version"
+  ],
+  "properties": {
+    "opportunity_id": {
+      "type": "string",
+      "pattern": "^opp_[a-zA-Z0-9_-]+$"
+    },
+    "niche_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["candidate_id", "title"],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "pattern": "^nc-[0-9]{3,}$"
+        },
+        "title": { "type": "string" },
+        "product_hypothesis": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Deterministic engine output only; never LLM-produced."
+    },
+    "subscores": {
+      "type": "object",
+      "required": ["demand", "growth", "pain", "competition", "content"],
+      "properties": {
+        "demand": { "type": "number", "minimum": 0, "maximum": 1 },
+        "growth": { "type": "number", "minimum": 0, "maximum": 1 },
+        "pain": { "type": "number", "minimum": 0, "maximum": 1 },
+        "competition": { "type": "number", "minimum": 0, "maximum": 1 },
+        "content": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "coverage_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["signal_type", "source_tier"],
+        "properties": {
+          "signal_type": {
+            "enum": ["demand", "growth", "pain", "competition", "content"]
+          },
+          "source_tier": {
+            "enum": ["open", "defended", "hostile"]
+          },
+          "reason": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "constraint_fit": {
+      "type": ["object", "null"],
+      "additionalProperties": true
+    },
+    "hostile_dependent": { "type": "boolean" },
+    "scored_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^sig_[a-zA-Z0-9_-]+$"
+      },
+      "minItems": 1
+    },
+    "generating_queries": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^qsp_[a-zA-Z0-9_-]+$"
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "required": ["text", "provenance"],
+      "properties": {
+        "text": { "type": "string" },
+        "cited_record_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["model_id", "prompt_version"],
+          "properties": {
+            "model_id": { "type": "string" },
+            "prompt_version": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "scoring_version",
+        "weights_version",
+        "normalize_version",
+        "config_hash",
+        "created_at"
+      ],
+      "properties": {
+        "scoring_version": { "type": "string" },
+        "weights_version": { "type": "string" },
+        "normalize_version": { "type": "string" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "enum": ["ACTIVE", "EXPIRED", "SUPERSEDED"]
+    },
+    "schema_version": {
+      "const": "opportunity.v1"
+    }
+  },
+  "additionalProperties": false
+}

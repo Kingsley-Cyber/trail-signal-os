@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "page.v1.schema.json",
+  "title": "Page v1",
+  "description": "Deterministic extraction output (Tier 1 / Tier B generic).",
+  "type": "object",
+  "required": [
+    "page_id",
+    "url",
+    "canonical_url",
+    "domain",
+    "fetched_at",
+    "title",
+    "text_md",
+    "links",
+    "media",
+    "platform_fields",
+    "content_hash",
+    "derived_from",
+    "provenance",
+    "schema_version"
+  ],
+  "properties": {
+    "page_id": {
+      "type": "string",
+      "pattern": "^pg_[a-zA-Z0-9_-]+$"
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "published_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": ["string", "null"]
+    },
+    "text_md": {
+      "type": "string"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url"],
+        "properties": {
+          "url": { "type": "string" },
+          "kind": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "platform_fields": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "token_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^tsk_[a-zA-Z0-9_-]+$"
+      },
+      "minItems": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["code_version", "schema_version", "config_hash", "created_at"],
+      "properties": {
+        "code_version": { "type": "string" },
+        "schema_version": { "const": "page.v1" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "const": "page.v1"
+    }
+  },
+  "additionalProperties": false
+}

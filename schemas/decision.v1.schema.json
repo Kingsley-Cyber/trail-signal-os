@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decision.v1.schema.json",
+  "title": "Decision v1",
+  "description": "Graph routing decision record (doc 07 §2).",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "action",
+    "args",
+    "rationale",
+    "cited_manifest_hash",
+    "derived_from",
+    "provenance",
+    "schema_version"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "pattern": "^dec_[a-zA-Z0-9_-]+$"
+    },
+    "action": {
+      "enum": ["expand", "stop", "synthesize", "escalate"]
+    },
+    "args": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "rationale": {
+      "type": "object",
+      "required": ["text", "provenance"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "cited_record_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["model_id", "prompt_version"],
+          "properties": {
+            "model_id": { "type": "string" },
+            "prompt_version": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "cited_manifest_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "constraint_rank": {
+      "type": ["number", "null"],
+      "description": "Deterministic constraint-fit rank when action follows decide re-rank."
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^opp_[a-zA-Z0-9_-]+$"
+      },
+      "minItems": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["schema_version", "config_hash", "created_at"],
+      "properties": {
+        "code_version": { "type": "string" },
+        "schema_version": { "const": "decision.v1" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "const": "decision.v1"
+    }
+  },
+  "additionalProperties": false
+}

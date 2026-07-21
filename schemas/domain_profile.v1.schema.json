@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "domain_profile.v1.schema.json",
+  "title": "Domain Profile v1",
+  "description": "Learned domain routing and extraction policy (doc 06 §3, parallel acquisition §1).",
+  "type": "object",
+  "required": [
+    "domain",
+    "tier",
+    "requires_browser",
+    "supports_http",
+    "max_concurrency",
+    "last_verified_at",
+    "profile_ttl_days",
+    "provenance",
+    "schema_version"
+  ],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tier": {
+      "enum": ["profiled", "generic", "blocked"],
+      "description": "Maps to doc 06 tiers A/B/C respectively."
+    },
+    "preferred_connector": { "type": "string" },
+    "preferred_route": { "type": "string" },
+    "requires_browser": { "type": "boolean" },
+    "supports_http": { "type": "boolean" },
+    "parser_schema": {
+      "type": ["string", "null"]
+    },
+    "parser_schema_version": { "type": "string" },
+    "max_concurrency": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "fallback_chain": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "access_mode": { "type": "string" },
+    "robots_stance": { "type": "string" },
+    "last_verified_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "profile_ttl_days": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "extraction_validation_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["schema_version", "config_hash", "created_at"],
+      "properties": {
+        "code_version": { "type": "string" },
+        "schema_version": { "const": "domain_profile.v1" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "const": "domain_profile.v1"
+    }
+  },
+  "additionalProperties": false
+}

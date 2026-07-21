@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-21T23:53:20Z"
+updated_at: "2026-07-21T23:56:10Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -41,9 +41,9 @@ nodes:
     gate: 0
     verifier: schema-round-trip
     integration_check: "each schema loads; sample instance validates round-trip"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: f3c4be30a6bd68e4653a725698e06bde37ce7822
 
   - id: N2
     name: db

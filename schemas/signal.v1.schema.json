@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "signal.v1.schema.json",
+  "title": "Signal v1",
+  "description": "One normalized signal for one niche from one source (deterministic normalize output).",
+  "type": "object",
+  "required": [
+    "signal_id",
+    "niche_id",
+    "signal_type",
+    "source",
+    "window",
+    "normalized_score",
+    "confidence",
+    "observed_at",
+    "expires_at",
+    "derived_from",
+    "provenance",
+    "schema_version"
+  ],
+  "properties": {
+    "signal_id": {
+      "type": "string",
+      "pattern": "^sig_[a-zA-Z0-9_-]+$"
+    },
+    "niche_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "signal_type": {
+      "enum": ["demand", "growth", "pain", "competition", "content"]
+    },
+    "source": {
+      "type": "object",
+      "required": ["domain", "tier"],
+      "properties": {
+        "domain": { "type": "string", "minLength": 1 },
+        "tier": {
+          "enum": ["open", "defended", "hostile"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "window": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string", "format": "date-time" },
+        "to": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "normalized_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^ev_[a-zA-Z0-9_-]+$"
+      },
+      "minItems": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["code_version", "schema_version", "config_hash", "created_at"],
+      "properties": {
+        "code_version": { "type": "string" },
+        "schema_version": { "const": "signal.v1" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "const": "signal.v1"
+    }
+  },
+  "additionalProperties": false
+}

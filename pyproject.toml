@@ -7,7 +7,9 @@ name = "trail-signal-os"
 version = "1.0.0"
 description = "Evidence-first outdoor product niche research toolkit"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+  "jsonschema>=4.0",
+]
 
 [project.scripts]
 niche-research = "niche_research.cli:main"

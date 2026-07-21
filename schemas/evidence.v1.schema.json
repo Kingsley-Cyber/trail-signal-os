@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "evidence.v1.schema.json",
+  "title": "Evidence v1",
+  "description": "LLM-enriched evidence aligned with research_evidence.csv columns.",
+  "type": "object",
+  "required": [
+    "record_id",
+    "source",
+    "evidence_type",
+    "polarity",
+    "observation",
+    "retrieved_at",
+    "independence_group",
+    "confidence",
+    "derived_from",
+    "content_hash",
+    "extraction",
+    "provenance",
+    "schema_version"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "pattern": "^ev_[a-zA-Z0-9_-]+$"
+    },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^ev-[a-z0-9-]+$"
+    },
+    "research_run_id": { "type": "string" },
+    "candidate_id": {
+      "type": "string",
+      "pattern": "^nc-[0-9]{3,}$"
+    },
+    "claim_id": { "type": "string" },
+    "source": {
+      "type": "object",
+      "required": ["url", "domain"],
+      "properties": {
+        "url": { "type": "string", "minLength": 1 },
+        "domain": { "type": "string", "minLength": 1 },
+        "source_id": { "type": "string" },
+        "source_class": { "type": "string" },
+        "source_title": { "type": "string" },
+        "platform": { "type": "string" },
+        "published_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "query_or_path": { "type": "string" },
+    "evidence_type": {
+      "enum": [
+        "behavior",
+        "workaround",
+        "demand",
+        "competition",
+        "seasonality",
+        "operations",
+        "risk",
+        "contradiction",
+        "price"
+      ]
+    },
+    "polarity": {
+      "enum": ["supporting", "contradicting", "neutral"]
+    },
+    "observation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metric_name": { "type": "string" },
+    "metric_value": {
+      "type": ["number", "string", "null"]
+    },
+    "metric_unit": { "type": "string" },
+    "geography": { "type": "string" },
+    "language": { "type": "string" },
+    "observed_at": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "independence_group": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "enum": ["low", "medium", "high"]
+    },
+    "limitations": { "type": "string" },
+    "raw_artifact_path": { "type": "string" },
+    "supersedes_evidence_id": { "type": "string" },
+    "product_terms": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "type"],
+        "properties": {
+          "text": { "type": "string" },
+          "type": { "type": "string" },
+          "sentiment": { "type": "number", "minimum": -1, "maximum": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "additionalProperties": true
+      }
+    },
+    "pain_points": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "desired_outcomes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "price_mentions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["amount", "currency"],
+        "properties": {
+          "amount": { "type": "number" },
+          "currency": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "quotes": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 200 }
+    },
+    "source_gap": { "type": "boolean" },
+    "derived_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^pg_[a-zA-Z0-9_-]+$"
+      },
+      "minItems": 1
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "extraction": {
+      "type": "object",
+      "required": ["model_id", "prompt_version"],
+      "properties": {
+        "model_id": { "type": "string" },
+        "quantization": { "type": "string" },
+        "prompt_version": { "type": "string" },
+        "role": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["model_id", "prompt_version", "schema_version", "config_hash", "created_at"],
+      "properties": {
+        "model_id": { "type": "string" },
+        "quantization": { "type": "string" },
+        "prompt_version": { "type": "string" },
+        "schema_version": { "const": "evidence.v1" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "const": "evidence.v1"
+    }
+  },
+  "additionalProperties": false
+}

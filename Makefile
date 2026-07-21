@@ -43,4 +43,7 @@ down:
 integration-check-infra:
 	PYTHONPATH=src $(PYTHON) -m unittest tests.test_infra_n0 -v
 
+integration-check-schemas:
+	PYTHONPATH=src $(PYTHON) -m unittest tests.test_schemas_n1.IntegrationCheckSchemas -v
+
 all: validate test score queries dossier

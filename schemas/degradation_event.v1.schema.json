@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "degradation_event.v1.schema.json",
+  "title": "Degradation Event v1",
+  "description": "Circuit, fallback, and coverage-gap events (doc 06 §2).",
+  "type": "object",
+  "required": [
+    "event_id",
+    "domain",
+    "route",
+    "event_type",
+    "recorded_at",
+    "provenance",
+    "schema_version"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^deg_[a-zA-Z0-9_-]+$"
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "route": {
+      "type": "string",
+      "minLength": 1,
+      "description": "domain:connector route key, e.g. youtube:ytdlp"
+    },
+    "event_type": {
+      "enum": [
+        "circuit_open",
+        "circuit_close",
+        "fallback_used",
+        "gap_recorded",
+        "tier_demotion",
+        "probe_success",
+        "probe_failure"
+      ]
+    },
+    "failure_class": {
+      "type": "string",
+      "description": "Retry classifier tag, e.g. HTTP_429 or EXTRACTOR_BROKEN."
+    },
+    "cooldown_until": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "fallback_route": { "type": "string" },
+    "job_id": {
+      "type": "string",
+      "pattern": "^job_[a-zA-Z0-9_-]+$"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^tsk_[a-zA-Z0-9_-]+$"
+    },
+    "source_gap": { "type": "boolean" },
+    "details": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["schema_version", "config_hash", "created_at"],
+      "properties": {
+        "code_version": { "type": "string" },
+        "schema_version": { "const": "degradation_event.v1" },
+        "config_hash": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "const": "degradation_event.v1"
+    }
+  },
+  "additionalProperties": false
+}
