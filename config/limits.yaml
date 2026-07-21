@@ -1,0 +1,41 @@
+# limits.yaml — token buckets, concurrency caps, default job budgets
+# Consumed by control/limits/ and scheduler admission (control_plane_v3 §2, doc 06).
+# Hashed into config_hash at runtime.
+
+version: "l-2026.07.21"
+
+token_buckets:
+  per_domain_default:
+    requests_per_second: 2.0
+    burst: 4
+    max_in_flight: 3
+  reddit:
+    requests_per_second: 0.5
+    burst: 1
+    max_in_flight: 1
+  youtube:
+    requests_per_second: 0.08
+    burst: 2
+    max_in_flight: 2
+
+max_in_flight:
+  http_global: 24
+  browser_pages: 2
+  media_concurrency: 2
+  enrich_workers: 1
+  index_workers: 2
+  parser_processes: 2
+
+default_budgets:
+  max_queries: 30
+  max_fetched_urls: 2000
+  per_domain_urls: 300
+  browser_pages: 60
+  media_items: 150
+  max_bytes: 5368709120
+  deadline_minutes: 45
+  max_attempts: 4
+  llm_budget:
+    max_calls: 500
+    max_tokens: 2000000
+    max_usd: 0

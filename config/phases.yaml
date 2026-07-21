@@ -1,0 +1,51 @@
+# phases.yaml — ACQUIRE / ENRICH / INDEX resource profiles + backpressure watermarks
+# control_plane_v3 §2; host memory budget from environment_profile.md (≤5 GiB steady-state).
+
+version: "p-2026.07.21"
+
+watermarks:
+  extract_backlog:
+    high: 500
+    low: 200
+  enrich_backlog:
+    high: 300
+    low: 100
+  index_backlog:
+    high: 1000
+    low: 400
+
+backpressure:
+  rule: admit_fetch_only_when_all_downstream_below_high
+  resume_when_all_downstream_below_low: true
+
+profiles:
+  ACQUIRE:
+    browser_enabled: true
+    http_concurrency: 24
+    local_llm_enabled: false
+    neo4j_enabled: false
+    enrich_workers: 0
+    index_workers: 0
+    parser_processes: 2
+  ENRICH:
+    browser_enabled: false
+    http_concurrency: 8
+    local_llm_enabled: true
+    neo4j_enabled: false
+    enrich_workers: 1
+    index_workers: 0
+    parser_processes: 2
+  INDEX:
+    browser_enabled: false
+    http_concurrency: 4
+    local_llm_enabled: false
+    neo4j_enabled: true
+    enrich_workers: 0
+    index_workers: 2
+    parser_processes: 1
+
+memory_governor:
+  vm_total_gib: 25.4
+  trail_signal_budget_gib: 5.0
+  green_below_pct: 70
+  orange_below_pct: 85

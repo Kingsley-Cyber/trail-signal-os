@@ -1,0 +1,52 @@
+# queues.yaml — Redis Stream names, tiers, consumer groups, poll weights
+# control_plane_v2 §Queues; v3 inter-lane backpressure reads backlog via Postgres.
+
+version: "q-2026.07.21"
+
+streams:
+  search:
+    name_prefix: cp:search
+    tiers: [high, normal, bulk]
+    consumer_group: search-workers
+  http:
+    name_prefix: cp:http
+    tiers: [high, normal, bulk]
+    consumer_group: http-workers
+  browser:
+    name_prefix: cp:browser
+    tiers: [high, normal, repair]
+    consumer_group: browser-workers
+  media:
+    name_prefix: cp:media
+    tiers: [normal]
+    consumer_group: media-workers
+  extract:
+    name_prefix: cp:extract
+    tiers: [high, normal, bulk]
+    consumer_group: extract-workers
+  enrich:
+    name_prefix: cp:enrich
+    tiers: [normal]
+    consumer_group: enrich-workers
+  document:
+    name_prefix: cp:document
+    tiers: [normal]
+    consumer_group: document-workers
+  index:
+    name_prefix: cp:index
+    tiers: [normal]
+    consumer_group: index-workers
+
+priorities:
+  poll_batch_weights:
+    high: 8
+    normal: 4
+    bulk: 1
+    repair: 1
+  repair_only_when_spare_capacity: true
+
+redis:
+  host_env: REDIS_HOST
+  port_env: REDIS_PORT
+  default_host: 127.0.0.1
+  default_port: 6380

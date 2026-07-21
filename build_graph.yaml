@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-21T00:00:00Z"
+updated_at: "2026-07-21T23:53:20Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -20,9 +20,9 @@ nodes:
     gate: 0
     verifier: gate-0
     integration_check: "make bootstrap → Postgres:5433 Redis:6380 healthy; compose uses env ports; no second SearXNG"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: beb5e431025436b41baa913e46014505987a00fa
 
   - id: N1
     name: schemas
