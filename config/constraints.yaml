@@ -1,0 +1,43 @@
+# constraints.yaml — domain-specific business gate thresholds
+# Salvaged from docs/archive/05_scoring_and_gates.md (superseded by docs/build/08_signal_engine.md).
+# Scoring *math* lives in docs/build/08_signal_engine.md. Hard evidence gates live in
+# config/evidence_gates.json. This file holds ONLY the business interpretation bands
+# and related domain thresholds the scoring engine / promotion logic consume.
+
+version: "c-2026.07.21"
+
+# ---------------------------------------------------------------------------
+# Score interpretation bands (salvaged from archived 05 §Interpretation)
+# ---------------------------------------------------------------------------
+# Archived 05 used a 0–100 CLI-normalized scale. docs/build/08_signal_engine.md
+# produces opportunity ∈ [0, 1]. Apply these bands to (opportunity * 100).
+# A high score cannot override failed hard gates (evidence_gates.json).
+score_interpretation_bands:
+  reject_or_archive:
+    max_exclusive: 50
+    action: reject_or_archive
+  continue_research_if_inexpensive:
+    min_inclusive: 50
+    max_inclusive: 64.99
+    action: continue_research_only_when_evidence_collection_is_inexpensive
+  controlled_experiment_after_gates:
+    min_inclusive: 65
+    max_inclusive: 79.99
+    action: eligible_for_controlled_experiment_after_gates_pass
+  priority_experiment:
+    min_inclusive: 80
+    max_inclusive: 100
+    action: priority_experiment_not_automatic_inventory_purchase
+
+# ---------------------------------------------------------------------------
+# Hard gates — authoritative file is config/evidence_gates.json
+# (referenced by archived 05 §Hard evidence gates; do not duplicate here)
+# ---------------------------------------------------------------------------
+hard_gates_ref: config/evidence_gates.json
+
+# ---------------------------------------------------------------------------
+# Scoring discipline notes (salvaged from archived 05 §Scoring discipline)
+# ---------------------------------------------------------------------------
+# - Scores without evidence IDs are analyst priors. Label them seed_prior.
+# - Evidence-adjusted scores must name supporting evidence IDs and scoring date.
+# - LAW 1: agents never assign scores; only docs/build/08_signal_engine.md does.

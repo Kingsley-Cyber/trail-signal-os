@@ -1,3 +1,5 @@
+> **ARCHIVED — superseded by `docs/build/06_source_degradation.md`.** Reference only; not governing.
+
 # Source Adapters
 
 `data/source_registry.csv` is the source authority. It distinguishes official APIs, official exports, public manual interfaces and sources requiring terms verification.

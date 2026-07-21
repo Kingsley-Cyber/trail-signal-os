@@ -1,4 +1,16 @@
-# Research Pipeline
+> **STATUS: Non-authoritative conceptual overview.**
+> Onboarding / plain-language material only. Not a Tier-2 spec.
+> For implementation, defer to:
+> - `docs/build/control_plane_v3_24gb.md` (control plane)
+> - `docs/build/control_plane_v4_signal_engine.md` (signal infra, LAW 1 & 2)
+> - `docs/build/06_source_degradation.md` (acquisition)
+> - `docs/build/08_signal_engine.md` (deterministic scoring)
+> Do not treat this document as governing.
+
+# Research Pipeline (conceptual)
+
+A plain-language map of how a niche candidate moves from seed to decision.
+The durable control plane and signal engine own the real stages, gates, and artifacts.
 
 ## Stage 0 — Seed expansion
 
@@ -32,7 +44,7 @@ Estimate dimensional weight, fragility, defect modes, variant count, compliance,
 
 ## Stage 6 — Scoring and hard gates
 
-Run the weighted model only after evidence normalization. A high score cannot override failed hard gates.
+Run the weighted model only after evidence normalization. A high score cannot override failed hard gates. Scoring is deterministic (`docs/build/08_signal_engine.md`); agents supply evidence, never scores [LAW 1].
 
 ## Stage 7 — Red team
 

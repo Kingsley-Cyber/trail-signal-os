@@ -1,5 +1,11 @@
 # Agent Operating Contract
 
+> **Scope.** This contract is authoritative for **runtime reasoning and evidence discipline** — how the
+> built system discovers, evidences, and reasons about product opportunities. It does **not** govern how
+> the system is constructed; that is `AGENT_BUILD_CONTRACT.md`.
+> **Above this contract:** LAW 1 (no LLM-produced score) and LAW 2 (total lineage), defined in
+> `docs/build/control_plane_v4_signal_engine.md §0`, bind this contract and override it on any conflict.
+
 This file is authoritative for every agent working in this repository.
 
 ## Mission
@@ -17,7 +23,10 @@ For every candidate, preserve:
 5. `workaround`: evidence users already modify behavior or equipment.
 6. `product hypothesis`: the smallest product interface that could remove friction.
 7. `evidence`: source, date, excerpt/observation, metric and limitations.
-8. `score`: rubric-based result with gate status.
+8. `score`: produced by the deterministic scoring engine (docs/build/08_signal_engine.md),
+   NOT by you. You supply fields 1–7 as structured evidence; the engine computes the normalized
+   sub-scores, confidence, and blended opportunity score. You may *explain* a score after it is
+   computed (citing record_ids); you may never assign one. [LAW 1]
 9. `experiment`: cheapest falsification test.
 
 ## Non-negotiable evidence rules
@@ -28,6 +37,8 @@ For every candidate, preserve:
 - Include source URL/identifier, retrieval date, geography, query and evidence type.
 - Preserve contradictory evidence.
 - Do not delete evidence. Supersede it with a newer row and link `supersedes_evidence_id`.
+- Never output a numeric opportunity or rubric score yourself. Scores come only from the deterministic
+  engine (docs/build/08_signal_engine.md). Producing a score is a LAW 1 violation.
 - Do not infer annual demand from a brief social trend.
 - Do not promote a candidate until every hard gate in `config/evidence_gates.json` passes.
 
@@ -42,7 +53,7 @@ For every candidate, preserve:
 
 ## Agent workflow
 
-1. Read `README.md`, this file, `docs/01_ontology_and_data_model.md`, and `docs/03_evidence_standard.md`.
+1. Read `README.md`, this file, `docs/domain/01_ontology_and_data_model.md`, and `docs/domain/03_evidence_standard.md`.
 2. Run `niche-research validate` before changes.
 3. Create a research run with `niche-research new-run --slug <slug>`.
 4. Generate queries from a seed activity and friction family.

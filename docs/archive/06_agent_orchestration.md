@@ -1,3 +1,6 @@
+> **ARCHIVED — superseded by `docs/build/07_agent_graph_engineering.md`.**
+> Named role inventory salvaged into §7 of that doc. Reference only; not governing.
+
 # Agent Orchestration
 
 ## Recommended roles

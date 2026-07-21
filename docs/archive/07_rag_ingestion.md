@@ -1,3 +1,5 @@
+> **ARCHIVED — superseded by `docs/build/control_plane_v3_24gb.md` / `docs/build/control_plane_v4_signal_engine.md`.** Reference only; not governing.
+
 # RAG Ingestion Guidance
 
 ## Durable corpus layers

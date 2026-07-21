@@ -1,3 +1,6 @@
+> **ARCHIVED — superseded by `docs/build/08_signal_engine.md`.**
+> Business interpretation bands salvaged to `config/constraints.yaml`. Reference only; not governing.
+
 # Scoring and Evidence Gates
 
 ## Why both are required
