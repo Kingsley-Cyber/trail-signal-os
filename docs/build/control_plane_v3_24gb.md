@@ -18,6 +18,9 @@ Verified-in-conversation date: 2026-07-21. Companion to `docs/build/06_source_de
 
 ## 1. Runtime & memory **[carry]**
 
+> **Host reality:** `docs/build/environment_profile.md` (32GB Mac Studio, Docker Desktop 25.4GiB VM
+> shared with Polymath) overrides this section's host assumptions.
+
 24GB split stands: Docker VM (OrbStack) ~10GB for Postgres/Redis/SearXNG/control/http/extract; native macOS for browser, yt-dlp, local LLM; Mongo/Qdrant/Neo4j capped and phase-gated; filesystem content store; no OTel collector initially.
 
 ---

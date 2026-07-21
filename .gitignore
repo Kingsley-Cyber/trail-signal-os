@@ -9,3 +9,4 @@ outputs/*
 !outputs/.gitkeep
 research_runs/*/raw/*
 !research_runs/*/raw/.gitkeep
+graphify-out/

@@ -67,3 +67,8 @@ artifact-a66e95e32e38,templates/niche_dossier.md,md,Niche Dossier,outdoor_niche_
 artifact-942c77f07014,templates/product_requirements_brief.md,md,Product Requirements Brief,outdoor_niche_research,active,1.0,2b98cd65179475c04e43928524c71c7ff1ddea24b2bc5b9492ff2d7b0860761c
 artifact-828777b06d74,templates/research_log.md,md,Research Log,outdoor_niche_research,active,1.0,61d20df4216280b59d00cfe07555c7b322b5415b500f0f3974390bc30714d4b2
 artifact-184d598b5a08,templates/weekly_research_brief.md,md,Weekly Research Brief,outdoor_niche_research,active,1.0,e1ee7a6b01a76fd0306d584fba5d4af333a3f25f565501fe80221c4b08242df5
+artifact-902ee14d110c,docs/build/environment_profile.md,md,Environment Profile,build_process,active,1.0,902ee14d110ccf6d3df852c3341f398b8a0b3e7b7476a1dbb19dce30b2c8c19d
+artifact-b6994327e2d5,docs/build/KICKSTART_PROMPT.md,md,Build Kickstart Prompt,build_process,active,1.0,b6994327e2d553bada564e35ebc4e16ce4c0b21300cf1931b18f7642d304c964
+artifact-551ebcbd444a,.cursor/agents/node-builder.md,md,Node Builder Subagent,build_process,active,1.0,551ebcbd444a9696d4fa36d5f9ab983f1da6baa8a5320f96c0d7a922bf2bf3d1
+artifact-be9e4034b84c,.cursor/agents/gate-verifier.md,md,Gate Verifier Subagent,build_process,active,1.0,be9e4034b84cb9d57476eb9c732f8cc3cd770e8cd8276c9370f8f8887520392c
+artifact-cf0a204692ba,.cursor/agents/slop-auditor.md,md,Slop Auditor Subagent,build_process,active,1.0,cf0a204692ba09f5ff5bb1cea8ded6efb09c31cc042e346b6de492f8940cb603

@@ -44,7 +44,7 @@ For every candidate, preserve:
 
 ## File behavior
 
-- CSV is the shared system of record; JSON is the agent interchange format; Markdown is the narrative layer.
+- CSV is the shared system of record; JSON is the agent interchange format; Markdown is the narrative layer. Post-build (Gate 3+), Postgres becomes operational truth and these CSVs continue as generated, append-only exports (`db/exports/` per `docs/build/repo_layout.md`).
 - Use UTF-8, LF line endings, ISO-8601 dates and stable IDs.
 - Append research runs under `research_runs/YYYY-MM-DD_slug/`.
 - Never overwrite `raw/` evidence.

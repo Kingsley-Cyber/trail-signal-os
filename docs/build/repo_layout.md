@@ -150,6 +150,8 @@ trail-signal-os/
 │   │   ├── 09_verification_harness.md
 │   │   ├── control_plane_v3_24gb.md
 │   │   ├── control_plane_v4_signal_engine.md
+│   │   ├── environment_profile.md    # physical host truth: memory, ports, coexistence
+│   │   ├── KICKSTART_PROMPT.md       # operational build-start prompt (not a spec)
 │   │   └── repo_layout.md
 │   ├── archive/                   # superseded; never governing
 │   ├── parallel_acquisition_architecture.md  # design; control-plane wins on conflict

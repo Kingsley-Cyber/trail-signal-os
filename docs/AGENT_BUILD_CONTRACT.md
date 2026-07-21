@@ -57,6 +57,7 @@ Build **only** what these docs specify. Do not invent architecture. If you find 
 | `08_signal_engine` | deterministic scoring math *(shared: AGENTS.md defers here for scoring)* | supersedes `05_scoring_and_gates` |
 | `09_verification_harness` | build gates, guards, fixtures, cassettes | — |
 | `repo_layout` | physical file layout | — |
+| `environment_profile` | physical host: hardware, memory budgets, ports, service reuse, Polymath coexistence | authoritative for environment; overrides v3 §1 host assumptions |
 | `adr/001_no_framework_fork` | framework-fork decision | — |
 
 **Contract precedence order** (on the rare intra-build conflict): `09_verification_harness` > `control_plane_v4` > `control_plane_v3` > `06/07/08` > `repo_layout`. A gate always beats a prose description.
