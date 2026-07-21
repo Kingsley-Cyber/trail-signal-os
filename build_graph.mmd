@@ -1,0 +1,150 @@
+%% trail-signal-os build DAG — generated from build_graph.yaml
+%% All nodes PENDING at materialization
+
+flowchart TB
+  subgraph FOUNDATION["FOUNDATION · Gate 0"]
+    N0[N0 infra]
+    N1[N1 schemas]
+    N2[N2 db]
+    N3[N3 fixtures]
+    N4[N4 guards]
+  end
+
+  subgraph CORE["CONTROL CORE"]
+    N5[N5 leases]
+    N6[N6 dispatcher+outbox]
+    N7[N7 scheduler]
+    N8[N8 retries+circuits]
+    N9[N9 reconciler]
+    N10[N10 control-api]
+  end
+
+  subgraph HARN["HARNESS"]
+    N11[N11 gateway]
+    N12[N12 node_executor]
+  end
+
+  subgraph GRAPH["GRAPH ENGINE"]
+    N13[N13 verifiers]
+    N14[N14 compiler+executor]
+  end
+
+  subgraph SLICE["VERTICAL SLICE · Gate 1"]
+    N15[N15 search_worker]
+    N16[N16 http+extract]
+    N17[N17 lineage]
+  end
+
+  subgraph MEDIA["MEDIA+MCP · Gate 2"]
+    N18[N18 media_worker]
+    N19[N19 mcp]
+  end
+
+  subgraph ENRICH["ENRICH+INDEX · Gate 3"]
+    N20[N20 enrich_worker]
+    N21[N21 index_worker]
+    N22[N22 governor]
+  end
+
+  subgraph SIG["SIGNAL SPLIT · Gate 4"]
+    N23[N23 classify+normalize]
+    N24[N24 confidence]
+  end
+
+  subgraph SCORE["COVERAGE+SCORE · Gate 5"]
+    N25[N25 coverage]
+    N26[N26 score]
+    N27[N27 explain]
+  end
+
+  subgraph TIERS["REPLAY+TIERS · Gate 6"]
+    N28[N28 tiers]
+  end
+
+  subgraph FULL["FULL DOSSIER · Gate 7"]
+    N29[N29 freshness]
+    N30[N30 decide]
+    N31[N31 graph/defs]
+    N32[N32 job-hierarchy+validate]
+    N33[N33 ACCEPTANCE]
+  end
+
+  N0 --> N2
+  N1 --> N2
+  N1 --> N3
+  N1 --> N4
+  N2 --> N4
+
+  N2 --> N5
+  N4 --> N5
+  N2 --> N6
+  N4 --> N6
+  N2 --> N7
+  N2 --> N8
+  N5 --> N9
+  N6 --> N9
+  N2 --> N9
+  N7 --> N10
+  N5 --> N10
+  N6 --> N10
+
+  N0 --> N11
+  N11 --> N12
+
+  N1 --> N13
+  N2 --> N14
+  N12 --> N14
+  N13 --> N14
+
+  N10 --> N15
+  N3 --> N15
+  N5 --> N16
+  N6 --> N16
+  N4 --> N16
+  N3 --> N16
+  N2 --> N17
+  N4 --> N17
+
+  N16 --> N18
+  N8 --> N18
+  N10 --> N19
+  N17 --> N19
+
+  N11 --> N20
+  N4 --> N20
+  N20 --> N21
+  N2 --> N21
+  N7 --> N22
+  N16 --> N22
+  N20 --> N22
+
+  N20 --> N23
+  N4 --> N23
+  N17 --> N23
+  N23 --> N24
+
+  N23 --> N25
+  N2 --> N25
+  N24 --> N26
+  N25 --> N26
+  N4 --> N26
+  N26 --> N27
+  N11 --> N27
+
+  N26 --> N28
+  N24 --> N28
+
+  N26 --> N29
+  N7 --> N29
+  N26 --> N30
+  N11 --> N30
+  N14 --> N31
+  N7 --> N32
+  N14 --> N32
+  N26 --> N32
+
+  N28 --> N33
+  N29 --> N33
+  N30 --> N33
+  N31 --> N33
+  N32 --> N33

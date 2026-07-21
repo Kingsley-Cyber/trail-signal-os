@@ -1,0 +1,464 @@
+# Live build DAG — trail-signal-os
+# Source: docs/AGENT_BUILD_CONTRACT.md §2
+# Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
+
+version: "1.0"
+updated_at: "2026-07-21T00:00:00Z"
+mermaid_path: build_graph.mmd
+
+nodes:
+  # ── FOUNDATION → Gate 0 ──────────────────────────────────────────
+  - id: N0
+    name: infra
+    produces:
+      - docker-compose.yml
+      - Makefile
+      - config/limits.yaml
+      - config/queues.yaml
+      - config/phases.yaml
+    depends_on: []
+    gate: 0
+    verifier: gate-0
+    integration_check: "make bootstrap → Postgres:5433 Redis:6380 healthy; compose uses env ports; no second SearXNG"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N1
+    name: schemas
+    produces:
+      - schemas/page.v1.schema.json
+      - schemas/evidence.v1.schema.json
+      - schemas/signal.v1.schema.json
+      - schemas/opportunity.v1.schema.json
+      - schemas/decision.v1.schema.json
+      - schemas/job.v1.schema.json
+      - schemas/task.v1.schema.json
+      - schemas/budget.v1.schema.json
+      - schemas/domain_profile.v1.schema.json
+      - schemas/degradation_event.v1.schema.json
+    depends_on: []
+    gate: 0
+    verifier: schema-round-trip
+    integration_check: "each schema loads; sample instance validates round-trip"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N2
+    name: db
+    produces:
+      - db/migrations/
+      - db/repositories/
+    depends_on: [N0, N1]
+    gate: 0
+    verifier: migrations-apply
+    integration_check: "migrations apply; unique constraints + indexes exist (guard 3)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N3
+    name: fixtures
+    produces:
+      - fixtures/pages/
+      - fixtures/search/
+      - fixtures/cassettes/
+      - fixtures/niches/camping-fixture/
+    depends_on: [N1]
+    gate: 0
+    verifier: fixtures-load
+    integration_check: "fixtures+cassettes+goldens+camping-fixture load & validate"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N4
+    name: guards
+    produces:
+      - tests/fault_injection/
+      - gates/
+    depends_on: [N1, N2]
+    gate: 0
+    verifier: verify-guards
+    integration_check: "make verify-guards: all 12 poison tests fire"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── CONTROL CORE ─────────────────────────────────────────────────
+  - id: N5
+    name: leases
+    produces:
+      - control/leases/
+    depends_on: [N2, N4]
+    gate: 1
+    verifier: fencing-poison
+    integration_check: "fencing poison (g2); reaper reclaim"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N6
+    name: dispatcher+outbox
+    produces:
+      - control/dispatcher/
+    depends_on: [N2, N4]
+    gate: 1
+    verifier: outbox-atomicity
+    integration_check: "outbox atomicity (g4); restart-Redis republish"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N7
+    name: scheduler
+    produces:
+      - control/scheduler/
+    depends_on: [N2]
+    gate: 1
+    verifier: admission-budgets
+    integration_check: "admission + budgets + fairness"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N8
+    name: retries+circuits
+    produces:
+      - control/retries/
+    depends_on: [N2]
+    gate: 1
+    verifier: circuit-breaker
+    integration_check: "429 cooldown; circuit open/close"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N9
+    name: reconciler
+    produces:
+      - control/reconciliation/
+    depends_on: [N5, N6, N2]
+    gate: 1
+    verifier: reconciler-orphans
+    integration_check: "republish missing; flag orphans (supports g6)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N10
+    name: control-api
+    produces:
+      - control/api/
+    depends_on: [N7, N5, N6]
+    gate: 1
+    verifier: readyz-gate
+    integration_check: "/readyz gated on reconciler first pass (doc 09 §4)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── HARNESS ──────────────────────────────────────────────────────
+  - id: N11
+    name: gateway
+    produces:
+      - harness/gateway.py
+      - harness/litellm_adapter.py
+      - config/models.yaml
+    depends_on: [N0]
+    gate: 3
+    verifier: cassette-replay
+    integration_check: "roles from models.yaml; hooks stripped; cassette replay"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N12
+    name: node_executor
+    produces:
+      - harness/node_executor.py
+    depends_on: [N11]
+    gate: 3
+    verifier: node-executor-ceiling
+    integration_check: "runs a node with verifier + iteration ceiling"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── GRAPH ENGINE ─────────────────────────────────────────────────
+  - id: N13
+    name: verifiers
+    produces:
+      - graph/verifiers/
+    depends_on: [N1]
+    gate: 3
+    verifier: verifier-catalog
+    integration_check: "each verifier in the catalog unit-tested (doc 07 §4)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N14
+    name: compiler+executor
+    produces:
+      - graph/compiler.py
+      - graph/executor.py
+    depends_on: [N2, N12, N13]
+    gate: 3
+    verifier: graph-compile
+    integration_check: "compile YAML→rows; render Mermaid; execute a node"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── VERTICAL SLICE → Gate 1 ──────────────────────────────────────
+  - id: N15
+    name: search_worker
+    produces:
+      - workers/search_worker.py
+    depends_on: [N10, N3]
+    gate: 1
+    verifier: searxng-fixture
+    integration_check: "SearXNG (fixture) → query_specs"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N16
+    name: http+extract
+    produces:
+      - workers/http_worker.py
+      - workers/extract_worker.py
+    depends_on: [N5, N6, N4, N3]
+    gate: 1
+    verifier: gate-1
+    integration_check: "fetch fixture URL → page.v1 → lineage edge"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N17
+    name: lineage
+    produces:
+      - lineage/edges.py
+      - lineage/trace.py
+      - lineage/diff.py
+      - lineage/replay.py
+      - control/api/routes_lineage.py
+    depends_on: [N2, N4]
+    gate: 1
+    verifier: lineage-edges
+    integration_check: "edges/trace (g6); replay/diff validated at Gate 6"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── MEDIA + MCP → Gate 2 ─────────────────────────────────────────
+  - id: N18
+    name: media_worker
+    produces:
+      - workers/media_worker.py
+    depends_on: [N16, N8]
+    gate: 2
+    verifier: ytdlp-fixture
+    integration_check: "yt-dlp auto-sub on fixtures; trickle + degradation (doc 06)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N19
+    name: mcp
+    produces:
+      - mcp/server.py
+    depends_on: [N10, N17]
+    gate: 2
+    verifier: gate-2
+    integration_check: "create_job/status/bundle round-trip; dup-message→one result"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── ENRICH + INDEX → Gate 3 ──────────────────────────────────────
+  - id: N20
+    name: enrich_worker
+    produces:
+      - workers/enrich_worker.py
+      - prompts/enrich_page.md
+    depends_on: [N11, N4]
+    gate: 3
+    verifier: enrich-cassette
+    integration_check: "evidence.v1 via cassette validates; invalid→repair NOT index"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N21
+    name: index_worker
+    produces:
+      - workers/index_worker.py
+    depends_on: [N20, N2]
+    gate: 3
+    verifier: qdrant-search
+    integration_check: "Qdrant search returns (ts_ prefix per environment_profile)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N22
+    name: governor
+    produces:
+      - control/resources/
+    depends_on: [N7, N16, N20]
+    gate: 3
+    verifier: gate-3
+    integration_check: "phase gating + backpressure under memory pressure"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── SIGNAL SPLIT → Gate 4 ────────────────────────────────────────
+  - id: N23
+    name: classify+normalize
+    produces:
+      - signal_engine/classify.py
+      - signal_engine/normalize.py
+      - prompts/signal_classify.md
+    depends_on: [N20, N4, N17]
+    gate: 4
+    verifier: law1-split
+    integration_check: "split (LAW 1); write-guard fires (g5); normalize invariants (g11)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N24
+    name: confidence
+    produces:
+      - signal_engine/confidence.py
+    depends_on: [N23]
+    gate: 4
+    verifier: gate-4
+    integration_check: "deterministic confidence"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── COVERAGE + SCORE → Gate 5 ────────────────────────────────────
+  - id: N25
+    name: coverage
+    produces:
+      - signal_engine/coverage.py
+    depends_on: [N23, N2]
+    gate: 5
+    verifier: coverage-gate
+    integration_check: "gate admits, else scores-with-gaps"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N26
+    name: score
+    produces:
+      - signal_engine/score.py
+      - config/weights.yaml
+    depends_on: [N24, N25, N4]
+    gate: 5
+    verifier: score-repro
+    integration_check: "reproducible (g12); camping-fixture → 0.72"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N27
+    name: explain
+    produces:
+      - signal_engine/explain.py
+      - prompts/explain_opportunity.md
+    depends_on: [N26, N11]
+    gate: 5
+    verifier: gate-5
+    integration_check: "explains, never scores (g5)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── REPLAY + TIERS → Gate 6 ──────────────────────────────────────
+  - id: N28
+    name: tiers
+    produces:
+      - signal_engine/tiers.py
+    depends_on: [N26, N24]
+    gate: 6
+    verifier: gate-6
+    integration_check: "discount + hostile-dependence cap; tier-loss → no evasion (g10); lineage.replay/diff"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  # ── FULL DOSSIER → Gate 7 ────────────────────────────────────────
+  - id: N29
+    name: freshness
+    produces:
+      - signal_engine/freshness.py
+    depends_on: [N26, N7]
+    gate: 7
+    verifier: freshness-expiry
+    integration_check: "expiry → re-collection"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N30
+    name: decide
+    produces:
+      - signal_engine/decide.py
+      - config/constraints.yaml
+    depends_on: [N26, N11]
+    gate: 7
+    verifier: decide-split
+    integration_check: "constraint-fit re-rank (det) + rationale (llm, split)"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N31
+    name: graph/defs
+    produces:
+      - graph/defs/research.yaml
+      - graph/defs/dossier.yaml
+    depends_on: [N14]
+    gate: 7
+    verifier: workflow-compile
+    integration_check: "research.yaml + dossier.yaml compile & execute"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N32
+    name: job-hierarchy+validate
+    produces:
+      - control/api/routes_jobs.py
+      - prompts/validator.md
+    depends_on: [N7, N14, N26]
+    gate: 7
+    verifier: validate-fanout
+    integration_check: "dossier parent/child jobs; VALIDATE fan-out sub-graph"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
+
+  - id: N33
+    name: ACCEPTANCE
+    produces:
+      - gates/gate-7.yaml
+    depends_on:
+      [N0, N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14,
+       N15, N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27,
+       N28, N29, N30, N31, N32]
+    gate: 7
+    verifier: gate-7
+    integration_check: "camping-fixture → dossier → 0.72; trace complete; replay reproduces"
+    status: PENDING
+    max_fix_attempts: 6
+    commit: null
