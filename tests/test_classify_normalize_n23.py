@@ -37,6 +37,7 @@ from signal_engine.classify import (
     run_classify_normalize_task,
     validate_signal_raw,
 )
+from signal_engine.confidence import confidence_for_signal_raw
 from signal_engine.normalize import (
     CODE_VERSION,
     apply_direction,
@@ -126,7 +127,11 @@ class NormalizeUnitTests(unittest.TestCase):
         validate_signal_v1(signal)
         assert_normalize_invariants(signal)
         self.assertAlmostEqual(signal["normalized_score"], 0.8)
-        self.assertEqual(signal["confidence"], 0.0)
+        self.assertGreater(signal["confidence"], 0.0)
+        self.assertAlmostEqual(
+            signal["confidence"],
+            confidence_for_signal_raw(signal_raw, as_of=CREATED_AT),
+        )
         self.assertEqual(signal["provenance"]["code_version"], CODE_VERSION)
 
     def test_out_of_range_normalized_value_raises_guard11(self) -> None:

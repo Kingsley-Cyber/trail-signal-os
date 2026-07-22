@@ -24,3 +24,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T01:40:05Z,N21,3,PASS,c339523071a0f72e5029efa725957c1f30854a73,validate+test+integration-check-index-worker+verify-guards+slop-approve,,ts_evidence Qdrant search (in-memory offline)
 2026-07-22T01:43:49Z,N22,3,PASS,b46934f477068d37555b0b34af15d891994f172b,validate+test+integration-check-governor+verify-guards+slop-approve,,Gate3 governor phase+pressure+backpressure
 2026-07-22T01:47:47Z,N23,4,PASS,8d117299a08b9ee8a025afad94606344e99d6806,validate+test+integration-check-classify-normalize+verify-guards+slop-approve,,LAW1 split; g5/g9/g11 green
+2026-07-22T01:52:15Z,N24,4,PASS,b4a403fadc7cc07f617488416d16b15d4cc7e432,validate+test+integration-check-confidence+verify-guards+slop-approve,,Gate4 deterministic confidence

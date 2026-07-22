@@ -15,6 +15,7 @@ from db.repositories.constraints import insert_lineage_edge_idempotent
 from db.repositories.persist_artifact import persist_artifact
 from fixtures.load import SCHEMAS_DIR
 from guards.runtime_guards import guard11_assert_normalize_invariants, guard6_require_lineage_edge
+from signal_engine.confidence import confidence_for_signal_raw
 
 CODE_VERSION = "normalize-1.0.0"
 NORMALIZE_VERSION = CODE_VERSION
@@ -160,6 +161,8 @@ def normalize_signal_raw(
     half_life = HALF_LIFE_DAYS.get(signal_type, 60)
     expires_at = _format_timestamp(observed + timedelta(days=half_life))
 
+    confidence = confidence_for_signal_raw(signal_raw, as_of=created_at)
+
     signal = {
         "signal_id": signal_id or build_signal_id(signal_raw),
         "niche_id": signal_raw["niche_id"],
@@ -167,7 +170,7 @@ def normalize_signal_raw(
         "source": dict(signal_raw["source"]),
         "window": dict(signal_raw["window"]),
         "normalized_score": normalized_score,
-        "confidence": 0.0,
+        "confidence": confidence,
         "observed_at": _format_timestamp(observed),
         "expires_at": expires_at,
         "derived_from": list(signal_raw["evidence_ids"]),
