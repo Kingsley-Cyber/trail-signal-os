@@ -1,4 +1,4 @@
-"""Republish outbox payloads after Redis loss (reconciler path until N9)."""
+"""Republish outbox payloads after Redis loss (called by control/reconciliation)."""
 
 from __future__ import annotations
 

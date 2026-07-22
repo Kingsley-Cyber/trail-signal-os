@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
 PYTHON ?= python3
 COMPOSE ?= docker compose
@@ -71,6 +71,9 @@ integration-check-scheduler:
 
 integration-check-retries:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_retries_n8.IntegrationCheckRetries -v
+
+integration-check-reconciler:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_reconciliation_n9.IntegrationCheckReconciler -v
 
 verify-guards:
 	PYTHONPATH=. $(PYTHON) -m guards.runner

@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:20:28Z"
+updated_at: "2026-07-22T00:23:09Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -143,9 +143,9 @@ nodes:
     gate: 1
     verifier: reconciler-orphans
     integration_check: "republish missing; flag orphans (supports g6)"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: d1e38ce2f6a279dcbe1217b661eb540b202fc60c
 
   - id: N10
     name: control-api
