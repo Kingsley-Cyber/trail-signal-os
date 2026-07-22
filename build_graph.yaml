@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:17:22Z"
+updated_at: "2026-07-22T00:20:28Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -131,9 +131,9 @@ nodes:
     gate: 1
     verifier: circuit-breaker
     integration_check: "429 cooldown; circuit open/close"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 75d74410f7da5da8471bf2c3e9bf1a8d3618a9ca
 
   - id: N9
     name: reconciler
