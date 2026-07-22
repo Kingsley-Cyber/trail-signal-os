@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures load-fixtures
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
 PYTHON ?= python3
 COMPOSE ?= docker compose
@@ -59,5 +59,20 @@ load-fixtures:
 
 integration-check-fixtures:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_fixtures_n3.IntegrationCheckFixtures -v
+
+verify-guards:
+	PYTHONPATH=. $(PYTHON) -m guards.runner
+
+gate-0:
+	@set -e; \
+	echo "==> Gate 0 manifest: gates/gate-0.yaml"; \
+	$(MAKE) validate; \
+	$(MAKE) test; \
+	$(MAKE) integration-check-infra; \
+	$(MAKE) integration-check-schemas; \
+	$(MAKE) integration-check-migrations; \
+	$(MAKE) integration-check-fixtures; \
+	$(MAKE) verify-guards; \
+	echo "==> Gate 0 offline checks complete (live bootstrap: make bootstrap)"
 
 all: validate test score queries dossier

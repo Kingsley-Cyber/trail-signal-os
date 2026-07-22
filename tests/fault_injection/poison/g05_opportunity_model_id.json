@@ -1,0 +1,27 @@
+{
+  "opportunity_id": "opp_poison_law1",
+  "niche_id": "camping-fixture",
+  "candidate": {"candidate_id": "nc-001", "title": "Portable camping fan"},
+  "score": 0.72,
+  "subscores": {
+    "demand": 0.676,
+    "growth": 0.583,
+    "pain": 0.725,
+    "competition": 0.57,
+    "content": 0.59
+  },
+  "confidence": 0.65,
+  "coverage_gaps": [],
+  "scored_from": ["sig_camping_demand"],
+  "generating_queries": ["qsp_camping_fan"],
+  "provenance": {
+    "scoring_version": "score-1.0.0",
+    "weights_version": "w-2026.07.21",
+    "normalize_version": "normalize-1.0.0",
+    "model_id": "llm-should-not-score",
+    "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "created_at": "2026-07-21T12:00:00Z"
+  },
+  "as_of": "2026-07-21T12:00:00Z",
+  "schema_version": "opportunity.v1"
+}

@@ -1,0 +1,56 @@
+version: "1.0"
+gate: 0
+phase: INFRA
+description: >
+  Gate 0 bootstrap checklist (doc 09 §2 Gate 0, §4). Infra must be healthy,
+  migrations applied, fixtures and cassettes loaded, model pulled on native host.
+doc_ref: docs/build/09_verification_harness.md
+
+infra_preconditions:
+  - id: postgres_healthy
+    check: docker compose up --wait postgres
+    port: "${POSTGRES_PORT:-5433}"
+  - id: redis_healthy
+    check: docker compose up --wait redis
+    port: "${REDIS_PORT:-6380}"
+  - id: searxng_external
+    note: Polymath SearXNG at host :8080 (no compose service in N0 slice)
+  - id: ollama_model
+    check: native host model pull (deferred in N0 Makefile bootstrap)
+
+bootstrap_commands:
+  - make bootstrap
+  - make migrate
+  - make load-fixtures
+
+offline_checks:
+  - id: validate
+    command: make validate
+  - id: repo_tests
+    command: make test
+  - id: integration_infra
+    command: make integration-check-infra
+  - id: integration_schemas
+    command: make integration-check-schemas
+  - id: integration_migrations
+    command: make integration-check-migrations
+  - id: integration_fixtures
+    command: make integration-check-fixtures
+  - id: verify_guards
+    command: make verify-guards
+    note: N4 — all 12 poison tests must fire
+
+guards_active: []
+
+guards_catalog_registered: 12
+guards_poison_suite: tests/fault_injection/test_poison_guards.py
+
+progress_ledger:
+  file: progress_ledger.csv
+  append_only: true
+
+goalpost_guard:
+  protected_paths:
+    - gates/
+    - fixtures/**/golden/
+    - fixtures/niches/camping-fixture/expected_opportunity.json

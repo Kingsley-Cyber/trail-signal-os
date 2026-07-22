@@ -1,0 +1,17 @@
+{
+  "name": "poison-workflow",
+  "nodes": [
+    {
+      "id": "classify",
+      "kind": "llm",
+      "role": "classifier"
+    }
+  ],
+  "edges": [
+    {
+      "from": "classify",
+      "to": "classify",
+      "edge_type": "back"
+    }
+  ]
+}
