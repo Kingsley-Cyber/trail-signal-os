@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-node-executor integration-check-verifiers integration-check-compiler-executor integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp integration-check-enrich-worker integration-check-index-worker integration-check-governor integration-check-classify-normalize integration-check-confidence load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-node-executor integration-check-verifiers integration-check-compiler-executor integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp integration-check-enrich-worker integration-check-index-worker integration-check-governor integration-check-classify-normalize integration-check-confidence integration-check-coverage load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
 ifneq (,$(wildcard .venv/bin/python))
 PYTHON := .venv/bin/python
@@ -123,6 +123,9 @@ integration-check-classify-normalize:
 
 integration-check-confidence:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_confidence_n24.IntegrationCheckConfidence -v
+
+integration-check-coverage:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_coverage_n25.IntegrationCheckCoverage -v
 
 verify-guards:
 	PYTHONPATH=. $(PYTHON) -m guards.runner
