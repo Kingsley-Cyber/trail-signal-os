@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:10:06Z"
+updated_at: "2026-07-22T00:13:31Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -107,9 +107,9 @@ nodes:
     gate: 1
     verifier: outbox-atomicity
     integration_check: "outbox atomicity (g4); restart-Redis republish"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: c4e3ca9fe1bd8deabfdd4b7f973b79722f654707
 
   - id: N7
     name: scheduler

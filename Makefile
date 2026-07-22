@@ -63,6 +63,9 @@ integration-check-fixtures:
 integration-check-leases:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_leases_n5.IntegrationCheckLeases -v
 
+integration-check-dispatcher:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_dispatcher_n6.IntegrationCheckDispatcher -v
+
 verify-guards:
 	PYTHONPATH=. $(PYTHON) -m guards.runner
 
