@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:59:40Z"
+updated_at: "2026-07-22T01:03:17Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -166,13 +166,13 @@ nodes:
       - harness/gateway.py
       - harness/litellm_adapter.py
       - config/models.yaml
-    depends_on: [N0]
+    depends_on: [N0, N3]
     gate: 3
     verifier: cassette-replay
     integration_check: "roles from models.yaml; hooks stripped; cassette replay"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 757cf44810a7ade254cf3f9ee40fa15158516087
 
   - id: N12
     name: node_executor

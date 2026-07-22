@@ -16,3 +16,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T00:51:04Z,N17,1,PASS,a8648be8af4af53648eb3682a4ac8fa8805f2493,validate+test+integration-check-lineage+verify-guards+slop-approve,,Gate1 vertical slice complete (edges/trace)
 2026-07-22T00:55:45Z,N18,2,PASS,1293a159403ef76f18ae5a7413a6af158487437e,validate+test+integration-check-media-worker+verify-guards+slop-approve,,yt-dlp fixture+trickle+circuit RETRY_WAIT
 2026-07-22T00:59:40Z,N19,2,PASS,81c3cd7b6c2d7586eadcc86b0e6909e5fcdedea3,validate+test+integration-check-mcp+verify-guards+slop-approve,,Gate2 MCP create_job/status/bundle+idempotency
+2026-07-22T01:03:17Z,N11,3,PASS,757cf44810a7ade254cf3f9ee40fa15158516087,validate+test+integration-check-gateway+verify-guards+slop-approve,,cassette replay; depends_on +N3 for fixtures

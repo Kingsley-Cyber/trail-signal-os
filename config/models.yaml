@@ -1,0 +1,65 @@
+# models.yaml — LLM gateway role bindings (control_plane_v3 §5)
+# Roles are gateway tags; model_id values live here only, never in Python code.
+# Hashed into config_hash at runtime.
+
+version: "m-2026.07.21"
+
+roles:
+  enrich.primary:
+    endpoint: "http://127.0.0.1:11434/v1"
+    model_id: qwen3-4b-instruct-q4
+    ctx_window: 32768
+    max_out: 1500
+    supports_schema: server
+    transport: openai_compatible
+    cost_per_mtok:
+      in: 0
+      out: 0
+    tps_estimate: 35
+
+  enrich.burst:
+    endpoint: "http://gpu-box.local:8000/v1"
+    model_id: qwen3-32b-awq
+    ctx_window: 32768
+    max_out: 1500
+    supports_schema: grammar
+    transport: openai_compatible
+    enabled: false
+    cost_per_mtok:
+      in: 0
+      out: 0
+
+  embed.primary:
+    endpoint: "http://127.0.0.1:11434/v1"
+    model_id: nomic-embed-text
+    ctx_window: 8192
+    max_out: 0
+    supports_schema: client_only
+    transport: openai_compatible
+    cost_per_mtok:
+      in: 0
+      out: 0
+
+  reason.primary:
+    endpoint: "http://127.0.0.1:11434/v1"
+    model_id: qwen3-4b-instruct-q4
+    ctx_window: 32768
+    max_out: 2000
+    supports_schema: server
+    transport: openai_compatible
+    cost_per_mtok:
+      in: 0
+      out: 0
+    tps_estimate: 35
+
+  judge:
+    endpoint: "http://127.0.0.1:4000/v1"
+    model_id: anthropic/claude-3-5-sonnet
+    ctx_window: 8192
+    max_out: 1000
+    supports_schema: client_only
+    transport: litellm
+    enabled: false
+    cost_per_mtok:
+      in: 3.0
+      out: 15.0
