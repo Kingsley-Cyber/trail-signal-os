@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:51:04Z"
+updated_at: "2026-07-22T00:55:45Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -263,9 +263,9 @@ nodes:
     gate: 2
     verifier: ytdlp-fixture
     integration_check: "yt-dlp auto-sub on fixtures; trickle + degradation (doc 06)"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 1293a159403ef76f18ae5a7413a6af158487437e
 
   - id: N19
     name: mcp

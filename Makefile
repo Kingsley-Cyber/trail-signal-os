@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-search-worker integration-check-http-extract integration-check-lineage load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
 ifneq (,$(wildcard .venv/bin/python))
 PYTHON := .venv/bin/python
@@ -87,6 +87,9 @@ integration-check-search-worker:
 
 integration-check-http-extract:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_http_extract_n16 -v
+
+integration-check-media-worker:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_media_worker_n18 -v
 
 integration-check-lineage:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_lineage_n17.IntegrationCheckLineage -v
