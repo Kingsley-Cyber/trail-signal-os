@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T02:06:41Z"
+updated_at: "2026-07-22T02:11:07Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -407,7 +407,7 @@ nodes:
     integration_check: "expiry → re-collection"
     status: DONE
     max_fix_attempts: 6
-    commit: d8f68a09d9889d748f6f3a45877c320b8fc3af9f
+    commit: fe32d1081cff8f6286466e329cc6074a9df7aa26
 
   - id: N30
     name: decide
