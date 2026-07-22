@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T01:40:05Z"
+updated_at: "2026-07-22T01:43:49Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -313,9 +313,9 @@ nodes:
     gate: 3
     verifier: gate-3
     integration_check: "phase gating + backpressure under memory pressure"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: b46934f477068d37555b0b34af15d891994f172b
 
   # ── SIGNAL SPLIT → Gate 4 ────────────────────────────────────────
   - id: N23
