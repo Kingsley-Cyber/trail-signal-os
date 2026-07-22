@@ -18,6 +18,7 @@ dependencies = [
   "selectolax>=0.3",
   "trafilatura>=2.0",
   "fastmcp>=2.0",
+  "qdrant-client>=1.12",
 ]
 
 [project.scripts]

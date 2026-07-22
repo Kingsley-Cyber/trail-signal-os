@@ -21,3 +21,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T01:16:48Z,N13,3,PASS,e1b13c38a4ee773405150f674c43574394cbd824,validate+test+integration-check-verifiers+verify-guards+slop-approve,,doc07 §4 seven-verifier catalog
 2026-07-22T01:19:43Z,N14,3,PASS,6c21a04d84f24594b97b87a060fdf1c00364d5ff,validate+test+integration-check-compiler-executor+verify-guards+slop-approve,,compile YAML→Mermaid→execute; depends_on +N17 lineage
 2026-07-22T01:24:09Z,N20,3,PASS,7404c41cbd973585dcd972de8053f29c0ad0b875,validate+test+integration-check-enrich-worker+verify-guards+slop-approve,,evidence.v1 cassette; invalid→repair not index
+2026-07-22T01:40:05Z,N21,3,PASS,c339523071a0f72e5029efa725957c1f30854a73,validate+test+integration-check-index-worker+verify-guards+slop-approve,,ts_evidence Qdrant search (in-memory offline)
