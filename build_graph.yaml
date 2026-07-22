@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T02:17:44Z"
+updated_at: "2026-07-22T02:21:05Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -444,9 +444,9 @@ nodes:
     gate: 7
     verifier: validate-fanout
     integration_check: "dossier parent/child jobs; VALIDATE fan-out sub-graph"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: ba3f220e0cdf5e3b01c192e8595454a365d0cf21
 
   - id: N33
     name: ACCEPTANCE
