@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
 PYTHON ?= python3
 COMPOSE ?= docker compose
@@ -65,6 +65,9 @@ integration-check-leases:
 
 integration-check-dispatcher:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_dispatcher_n6.IntegrationCheckDispatcher -v
+
+integration-check-scheduler:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_scheduler_n7.IntegrationCheckScheduler -v
 
 verify-guards:
 	PYTHONPATH=. $(PYTHON) -m guards.runner

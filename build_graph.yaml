@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:13:31Z"
+updated_at: "2026-07-22T00:17:22Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -115,13 +115,13 @@ nodes:
     name: scheduler
     produces:
       - control/scheduler/
-    depends_on: [N2]
+    depends_on: [N2, N6]
     gate: 1
     verifier: admission-budgets
     integration_check: "admission + budgets + fairness"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 836d781aa86a5a1914da199ed38c8e947fc19cb8
 
   - id: N8
     name: retries+circuits
