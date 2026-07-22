@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T02:15:07Z"
+updated_at: "2026-07-22T02:17:44Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -431,9 +431,9 @@ nodes:
     gate: 7
     verifier: workflow-compile
     integration_check: "research.yaml + dossier.yaml compile & execute"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: e8cf9a513b9be08a65f06f0c7873d96358798485
 
   - id: N32
     name: job-hierarchy+validate

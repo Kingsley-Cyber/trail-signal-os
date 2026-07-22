@@ -1,0 +1,128 @@
+# TrailSignal research agent graph (doc 07 §3): discover→fetch→enrich→index→gap→synth→review
+workflow:
+  id: wf_research
+  name: trail_signal_research
+  version: "2026.07.21"
+
+nodes:
+  - id: planner
+    kind: llm
+    role: reason.primary
+    input_schema: job.v1
+    output_schema: plan.v1
+    prompt: prompts/01_activity_expander.md
+    loop:
+      max_iterations: 2
+    verifier: plan_validates
+
+  - id: discover
+    kind: deterministic
+    input_schema: plan.v1
+    output_schema: task.v1
+    loop:
+      max_iterations: 1
+
+  - id: fetch_parse
+    kind: deterministic
+    input_schema: task.v1
+    output_schema: page.v1
+    loop:
+      max_iterations: 1
+
+  - id: enrich_page
+    kind: llm
+    role: enrich.primary
+    input_schema: page.v1
+    output_schema: evidence.v1
+    prompt: prompts/enrich_page.md
+    cassette_kind: enrich
+    loop:
+      max_iterations: 2
+    verifier: schema_validate
+
+  - id: index_rollup
+    kind: deterministic
+    input_schema: evidence.v1
+    output_schema: rollup.v1
+    loop:
+      max_iterations: 1
+
+  - id: gap_analyst
+    kind: llm
+    role: reason.primary
+    input_schema: rollup.v1
+    output_schema: decision.v1
+    prompt: prompts/00_orchestrator.md
+    loop:
+      max_iterations: 2
+    verifier: decision_valid
+
+  - id: synthesizer
+    kind: llm
+    role: reason.primary
+    input_schema: decision.v1
+    output_schema: synthesis.v1
+    prompt: prompts/09_dossier_writer.md
+    loop:
+      max_iterations: 2
+    verifier: claim_grounding
+
+  - id: reviewer
+    kind: llm
+    role: reason.primary
+    input_schema: synthesis.v1
+    output_schema: synthesis.v1
+    prompt: prompts/08_red_team.md
+    loop:
+      max_iterations: 2
+    verifier: claim_grounding
+
+edges:
+  - from: __start__
+    to: planner
+    edge_type: sequence
+
+  - from: planner
+    to: discover
+    edge_type: sequence
+
+  - from: discover
+    to: fetch_parse
+    edge_type: fan-out
+
+  - from: fetch_parse
+    to: enrich_page
+    edge_type: fan-out
+
+  - from: enrich_page
+    to: index_rollup
+    edge_type: sequence
+
+  - from: index_rollup
+    to: gap_analyst
+    edge_type: fan-in
+
+  - from: gap_analyst
+    to: discover
+    edge_type: back
+    condition: action=expand
+    max_trips: 3
+
+  - from: gap_analyst
+    to: synthesizer
+    edge_type: conditional
+    condition: action=synthesize
+
+  - from: synthesizer
+    to: reviewer
+    edge_type: sequence
+
+  - from: reviewer
+    to: synthesizer
+    edge_type: back
+    max_trips: 2
+
+  - from: reviewer
+    to: __end__
+    edge_type: sequence
+    condition: verdict=pass

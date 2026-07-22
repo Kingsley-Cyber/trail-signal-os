@@ -1,0 +1,87 @@
+# Dossier pipeline (repo_layout): signal→coverage→score→explain→validate→decide
+workflow:
+  id: wf_dossier
+  name: trail_signal_dossier
+  version: "2026.07.21"
+
+nodes:
+  - id: signal_normalize
+    kind: deterministic
+    input_schema: evidence.v1
+    output_schema: signal.v1
+    verifier: schema_validate
+    loop:
+      max_iterations: 1
+
+  - id: coverage_gate
+    kind: deterministic
+    input_schema: signal.v1
+    output_schema: signal.v1
+    loop:
+      max_iterations: 1
+
+  - id: score_opportunity
+    kind: deterministic
+    input_schema: signal.v1
+    output_schema: opportunity.v1
+    verifier: schema_validate
+    loop:
+      max_iterations: 1
+
+  - id: explain_opportunity
+    kind: llm
+    role: reason.primary
+    input_schema: opportunity.v1
+    output_schema: opportunity.v1
+    prompt: prompts/explain_opportunity.md
+    cassette_kind: explain
+    loop:
+      max_iterations: 2
+    verifier: schema_validate
+
+  - id: validate_dossier
+    kind: deterministic
+    input_schema: opportunity.v1
+    output_schema: opportunity.v1
+    verifier: schema_validate
+    loop:
+      max_iterations: 1
+
+  - id: decide
+    kind: llm
+    role: reason.primary
+    input_schema: opportunity.v1
+    output_schema: decision.v1
+    prompt: prompts/09_dossier_writer.md
+    loop:
+      max_iterations: 2
+    verifier: decision_valid
+
+edges:
+  - from: __start__
+    to: signal_normalize
+    edge_type: sequence
+
+  - from: signal_normalize
+    to: coverage_gate
+    edge_type: sequence
+
+  - from: coverage_gate
+    to: score_opportunity
+    edge_type: sequence
+
+  - from: score_opportunity
+    to: explain_opportunity
+    edge_type: sequence
+
+  - from: explain_opportunity
+    to: validate_dossier
+    edge_type: sequence
+
+  - from: validate_dossier
+    to: decide
+    edge_type: sequence
+
+  - from: decide
+    to: __end__
+    edge_type: sequence
