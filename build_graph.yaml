@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T01:03:17Z"
+updated_at: "2026-07-22T01:14:13Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -182,9 +182,9 @@ nodes:
     gate: 3
     verifier: node-executor-ceiling
     integration_check: "runs a node with verifier + iteration ceiling"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 577b53d5dc2dbcac4ff3dc451b46d2f0fbf37a08
 
   # ── GRAPH ENGINE ─────────────────────────────────────────────────
   - id: N13

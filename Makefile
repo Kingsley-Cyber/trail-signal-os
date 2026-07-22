@@ -85,6 +85,9 @@ integration-check-control-api:
 integration-check-gateway:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_gateway_n11 -v
 
+integration-check-node-executor:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_node_executor_n12 -v
+
 integration-check-search-worker:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_search_worker_n15 -v
 
