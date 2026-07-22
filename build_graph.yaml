@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:07:33Z"
+updated_at: "2026-07-22T00:10:06Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -95,9 +95,9 @@ nodes:
     gate: 1
     verifier: fencing-poison
     integration_check: "fencing poison (g2); reaper reclaim"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 305527c96c131cf0ea9000d52a0bed61a4e8e7a5
 
   - id: N6
     name: dispatcher+outbox
