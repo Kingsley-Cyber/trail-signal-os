@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T02:11:07Z"
+updated_at: "2026-07-22T02:15:07Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -418,9 +418,9 @@ nodes:
     gate: 7
     verifier: decide-split
     integration_check: "constraint-fit re-rank (det) + rationale (llm, split)"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 903de2542f9029b658f0912dda43793a1d3bde65
 
   - id: N31
     name: graph/defs

@@ -41,3 +41,24 @@ hard_gates_ref: config/evidence_gates.json
 # - Scores without evidence IDs are analyst priors. Label them seed_prior.
 # - Evidence-adjusted scores must name supporting evidence IDs and scoring date.
 # - LAW 1: agents never assign scores; only docs/build/08_signal_engine.md does.
+
+# ---------------------------------------------------------------------------
+# Constraint-fit re-ranker (N30 decide — deterministic, doc repo_layout §config)
+# ---------------------------------------------------------------------------
+# Candidate constraint axes use the legacy 0–5 niche_candidate scale (archived 05).
+# Normalized to [0,1] before blending with opportunity.score for re-rank order.
+constraint_rerank:
+  version: "cr-2026.07.21"
+  axis_weights:
+    margin_potential: 0.40
+    shipping_fit: 0.35
+    channel_fit: 0.25
+  channel_fit_field: community_reachability
+  min_fit_score: 0.55
+  rank_blend:
+    opportunity_weight: 0.65
+    constraint_weight: 0.35
+  default_profile:
+    margin_potential: 3
+    shipping_fit: 3
+    community_reachability: 3

@@ -30,3 +30,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T02:01:20Z,N27,5,PASS,5529a1cb5dc4d4071f61805ea899d671796176fa,validate+test+verify-guards+slop-approve,,explains never scores; g5 green
 2026-07-22T02:06:00Z,N28,6,PASS,31a8a8b980e86ab49f86f3f1ba1ab21a005be220,validate+test+verify-guards+slop-approve,,tiers wired into score; hostile cap; g10; Gate6
 2026-07-22T02:11:07Z,N29,7,PASS,fe32d1081cff8f6286466e329cc6074a9df7aa26,validate+test+verify-guards+slop-approve,,expiry → re-collection via N7 admit_task
+2026-07-22T02:15:07Z,N30,7,PASS,903de2542f9029b658f0912dda43793a1d3bde65,validate+test+verify-guards+slop-approve,,constraint-fit det re-rank + LLM rationale split
