@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:23:09Z"
+updated_at: "2026-07-22T00:29:03Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -151,13 +151,13 @@ nodes:
     name: control-api
     produces:
       - control/api/
-    depends_on: [N7, N5, N6]
+    depends_on: [N7, N5, N6, N9]
     gate: 1
     verifier: readyz-gate
     integration_check: "/readyz gated on reconciler first pass (doc 09 §4)"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 1e43cb4a68fbb1d4095e01ead7c7206672172e72
 
   # ── HARNESS ──────────────────────────────────────────────────────
   - id: N11

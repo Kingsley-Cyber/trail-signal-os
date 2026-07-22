@@ -1,6 +1,10 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
+ifneq (,$(wildcard .venv/bin/python))
+PYTHON := .venv/bin/python
+else
 PYTHON ?= python3
+endif
 COMPOSE ?= docker compose
 # Gate 0 bring-up: postgres + redis only; SearXNG stays external (Polymath :8080).
 BOOTSTRAP_SERVICES ?= postgres redis
@@ -74,6 +78,9 @@ integration-check-retries:
 
 integration-check-reconciler:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_reconciliation_n9.IntegrationCheckReconciler -v
+
+integration-check-control-api:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_control_api_n10.IntegrationCheckControlApi -v
 
 verify-guards:
 	PYTHONPATH=. $(PYTHON) -m guards.runner
