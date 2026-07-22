@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T01:14:13Z"
+updated_at: "2026-07-22T01:16:48Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -195,9 +195,9 @@ nodes:
     gate: 3
     verifier: verifier-catalog
     integration_check: "each verifier in the catalog unit-tested (doc 07 §4)"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: e1b13c38a4ee773405150f674c43574394cbd824
 
   - id: N14
     name: compiler+executor

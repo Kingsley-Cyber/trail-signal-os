@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-node-executor integration-check-verifiers integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
 ifneq (,$(wildcard .venv/bin/python))
 PYTHON := .venv/bin/python
@@ -87,6 +87,9 @@ integration-check-gateway:
 
 integration-check-node-executor:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_node_executor_n12 -v
+
+integration-check-verifiers:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_verifiers_n13 -v
 
 integration-check-search-worker:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_search_worker_n15 -v
