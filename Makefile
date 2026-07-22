@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-node-executor integration-check-verifiers integration-check-compiler-executor integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-node-executor integration-check-verifiers integration-check-compiler-executor integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp integration-check-enrich-worker load-fixtures verify-guards gate-0
 # Host has python3 only (docs/build/environment_profile.md §4)
 ifneq (,$(wildcard .venv/bin/python))
 PYTHON := .venv/bin/python
@@ -108,6 +108,9 @@ integration-check-lineage:
 
 integration-check-mcp:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_mcp_n19.IntegrationCheckMcp -v
+
+integration-check-enrich-worker:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_enrich_worker_n20.IntegrationCheckEnrichWorker -v
 
 verify-guards:
 	PYTHONPATH=. $(PYTHON) -m guards.runner

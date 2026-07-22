@@ -20,3 +20,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T01:14:13Z,N12,3,PASS,577b53d5dc2dbcac4ff3dc451b46d2f0fbf37a08,validate+test+integration-check-node-executor+verify-guards+slop-approve,,verifier+iteration ceiling; packed input; no hooks
 2026-07-22T01:16:48Z,N13,3,PASS,e1b13c38a4ee773405150f674c43574394cbd824,validate+test+integration-check-verifiers+verify-guards+slop-approve,,doc07 §4 seven-verifier catalog
 2026-07-22T01:19:43Z,N14,3,PASS,6c21a04d84f24594b97b87a060fdf1c00364d5ff,validate+test+integration-check-compiler-executor+verify-guards+slop-approve,,compile YAML→Mermaid→execute; depends_on +N17 lineage
+2026-07-22T01:24:09Z,N20,3,PASS,7404c41cbd973585dcd972de8053f29c0ad0b875,validate+test+integration-check-enrich-worker+verify-guards+slop-approve,,evidence.v1 cassette; invalid→repair not index

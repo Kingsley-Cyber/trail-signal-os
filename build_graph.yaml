@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T01:19:43Z"
+updated_at: "2026-07-22T01:24:09Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -289,9 +289,9 @@ nodes:
     gate: 3
     verifier: enrich-cassette
     integration_check: "evidence.v1 via cassette validates; invalid→repair NOT index"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 7404c41cbd973585dcd972de8053f29c0ad0b875
 
   - id: N21
     name: index_worker
