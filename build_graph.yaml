@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T01:16:48Z"
+updated_at: "2026-07-22T01:19:43Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -204,13 +204,13 @@ nodes:
     produces:
       - graph/compiler.py
       - graph/executor.py
-    depends_on: [N2, N12, N13]
+    depends_on: [N2, N12, N13, N17]
     gate: 3
     verifier: graph-compile
     integration_check: "compile YAML→rows; render Mermaid; execute a node"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 6c21a04d84f24594b97b87a060fdf1c00364d5ff
 
   # ── VERTICAL SLICE → Gate 1 ──────────────────────────────────────
   - id: N15
