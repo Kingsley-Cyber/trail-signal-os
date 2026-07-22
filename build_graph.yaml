@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:00:35Z"
+updated_at: "2026-07-22T00:02:59Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -69,9 +69,9 @@ nodes:
     gate: 0
     verifier: fixtures-load
     integration_check: "fixtures+cassettes+goldens+camping-fixture load & validate"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 371d15342de48fae80283634cdc49fd662015ba2
 
   - id: N4
     name: guards

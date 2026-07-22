@@ -1,0 +1,27 @@
+{
+  "cassette_kind": "classify",
+  "input_hash": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+  "recorded_at": "2026-07-21T12:00:00Z",
+  "request": {
+    "role": "enrich.primary",
+    "model_id": "qwen3-4b-q4",
+    "prompt_version": "signal_classify-2026.07.21",
+    "record_id": "ev_camping_pain_1042"
+  },
+  "response": {
+    "text": "{\"niche_id\":\"camping-fixture\",\"signal_type\":\"pain\",\"raw_metric\":{\"name\":\"complaint_theme_density\",\"value\":0.61,\"unit\":\"pct_reviews\",\"sample_n\":214}}",
+    "parsed": {
+      "niche_id": "camping-fixture",
+      "signal_type": "pain",
+      "source": {"domain": "trustcamp.example", "tier": "open"},
+      "window": {"from": "2026-01-01T00:00:00Z", "to": "2026-07-01T00:00:00Z"},
+      "raw_metric": {
+        "name": "complaint_theme_density",
+        "value": 0.61,
+        "unit": "pct_reviews",
+        "sample_n": 214
+      },
+      "evidence_ids": ["ev_camping_pain_1042", "ev_camping_pain_1108", "ev_camping_pain_1155"]
+    }
+  }
+}

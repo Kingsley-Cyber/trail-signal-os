@@ -1,0 +1,47 @@
+{
+  "query": "portable camping fan",
+  "number_of_results": 4,
+  "results": [
+    {
+      "url": "https://trailgearlab.example/articles/portable-camping-fans",
+      "title": "Best Portable Camping Fans for Hot Summer Nights",
+      "content": "Field tests compared rechargeable models on noise, runtime, and pack weight for tent camping.",
+      "engine": "google",
+      "score": 9.2,
+      "category": "general"
+    },
+    {
+      "url": "https://camptalk.example/threads/rechargeable-fan-died-overnight",
+      "title": "Rechargeable fan died overnight — workaround?",
+      "content": "Forum thread with 142 replies about battery life and noise workarounds in hot tents.",
+      "engine": "google",
+      "score": 8.7,
+      "category": "general"
+    },
+    {
+      "url": "https://market.example/dp/B0CAMPFAN1",
+      "title": "FlexBreeze Pro Rechargeable Camping Fan - 8 inch",
+      "content": "Marketplace listing with 1,842 ratings citing battery and noise complaints.",
+      "engine": "google",
+      "score": 8.1,
+      "category": "general"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dQw4campfan",
+      "title": "I Tested Every Portable Camping Fan So You Don't Have To",
+      "content": "Video review comparing five fans on airflow, noise, and battery runtime.",
+      "engine": "youtube",
+      "score": 7.9,
+      "category": "videos"
+    }
+  ],
+  "answers": [],
+  "corrections": [],
+  "infoboxes": [],
+  "suggestions": [
+    "best portable fan for tent camping",
+    "rechargeable camping fan battery life",
+    "quiet camping fan reviews"
+  ],
+  "unresponsive_engines": []
+}

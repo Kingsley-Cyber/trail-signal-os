@@ -1,0 +1,26 @@
+{
+  "cassette_kind": "explain",
+  "input_hash": "sha256:9999999999999999999999999999999999999999999999999999999999999999",
+  "recorded_at": "2026-07-21T12:00:00Z",
+  "request": {
+    "role": "enrich.primary",
+    "model_id": "qwen3-4b-q4",
+    "prompt_version": "explain_opportunity-2026.07.21",
+    "opportunity_id": "opp_camping_fixture"
+  },
+  "response": {
+    "text": "Strong complaint density meets solid demand in a moderately uncrowded field with low ad spend.",
+    "parsed": {
+      "text": "Strong complaint density (0.80 pctile, 200+ reviews citing battery life and noise) meets solid, mildly accelerating demand in a moderately uncrowded field with low ad spend — both interaction terms lifted the base. Confidence moderate: content potential leans on a discounted TikTok source. Top pains: [ev_camping_pain_1042, ev_camping_pain_1108, ev_camping_pain_1155].",
+      "cited_record_ids": [
+        "ev_camping_pain_1042",
+        "ev_camping_pain_1108",
+        "ev_camping_pain_1155"
+      ],
+      "provenance": {
+        "model_id": "qwen3-4b-q4",
+        "prompt_version": "explain_opportunity-2026.07.21"
+      }
+    }
+  }
+}

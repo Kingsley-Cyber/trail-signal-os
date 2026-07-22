@@ -1,0 +1,24 @@
+{
+  "page_id": "pg_camping_forum",
+  "url": "https://camptalk.example/threads/rechargeable-fan-died-overnight",
+  "canonical_url": "https://camptalk.example/threads/rechargeable-fan-died-overnight",
+  "domain": "camptalk.example",
+  "fetched_at": "2026-07-21T12:00:00Z",
+  "published_at": "2026-07-18T19:44:00Z",
+  "title": "Rechargeable fan died overnight — workaround?",
+  "author": "ridge_runner",
+  "text_md": "# Rechargeable fan died overnight — workaround?\n\nFan quit at 2am with 40% power bank left. Group workaround: swap banks at midnight and run on low despite motor noise.",
+  "links": [],
+  "media": [],
+  "platform_fields": {"source_class": "forum_thread", "reply_count": 142},
+  "content_hash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "token_count": 142,
+  "derived_from": ["tsk_camping_fetch_forum"],
+  "provenance": {
+    "code_version": "extract-1.0.0",
+    "schema_version": "page.v1",
+    "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "created_at": "2026-07-21T12:00:00Z"
+  },
+  "schema_version": "page.v1"
+}

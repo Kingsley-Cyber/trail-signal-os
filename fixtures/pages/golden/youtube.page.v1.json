@@ -1,0 +1,35 @@
+{
+  "page_id": "pg_camping_youtube",
+  "url": "https://www.youtube.com/watch?v=dQw4campfan",
+  "canonical_url": "https://www.youtube.com/watch?v=dQw4campfan",
+  "domain": "youtube.com",
+  "fetched_at": "2026-07-21T12:00:00Z",
+  "published_at": "2026-05-12T14:22:00Z",
+  "title": "I Tested Every Portable Camping Fan So You Don't Have To",
+  "author": "Overnight Outdoors",
+  "text_md": "# I Tested Every Portable Camping Fan So You Don't Have To\n\nSide-by-side noise, airflow, and battery tests. Three of five fans quit before advertised runtime; clip-on model was loudest at medium speed.",
+  "links": [],
+  "media": [
+    {
+      "url": "https://www.youtube.com/watch?v=dQw4campfan",
+      "kind": "video"
+    }
+  ],
+  "platform_fields": {
+    "source_class": "youtube",
+    "video_id": "dQw4campfan",
+    "view_count": 284000,
+    "duration_seconds": 842,
+    "transcript_path": "fixtures/pages/youtube_transcript.vtt"
+  },
+  "content_hash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "token_count": 210,
+  "derived_from": ["tsk_camping_fetch_youtube"],
+  "provenance": {
+    "code_version": "extract-1.0.0",
+    "schema_version": "page.v1",
+    "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "created_at": "2026-07-21T12:00:00Z"
+  },
+  "schema_version": "page.v1"
+}

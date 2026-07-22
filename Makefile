@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures load-fixtures
 # Host has python3 only (docs/build/environment_profile.md §4)
 PYTHON ?= python3
 COMPOSE ?= docker compose
@@ -22,7 +22,7 @@ dossier:
 
 # N0 infra slice only (doc 09 §4 bootstrap is completed at Gate 0 after N2/N3).
 # N2 (deferred): db/migrations apply.
-# N3 (deferred): fixtures + cassettes load.
+# N3: fixtures + cassettes load (integration-check-fixtures).
 # Control API (N10), Ollama model pull: later nodes / native host.
 bootstrap:
 	@set -e; \
@@ -31,10 +31,10 @@ bootstrap:
 	$(COMPOSE) up -d --wait $(BOOTSTRAP_SERVICES); \
 	echo "==> N0 complete: Postgres :$${POSTGRES_PORT:-5433} and Redis :$${REDIS_PORT:-6380} healthy"; \
 	$(MAKE) migrate; \
-	echo "==> Deferred (N3): load fixtures + cassettes"; \
+	$(MAKE) load-fixtures; \
 	echo "==> Deferred: Ollama model pull on native host"; \
 	echo "==> External: SearXNG via Polymath at host :8080 (no compose service)"; \
-	echo "==> Gate 0 not complete until fixtures load (N3)"
+	echo "==> Gate 0 infra slice complete; full Gate 0 also requires model pull"
 
 migrate:
 	@set -e; \
@@ -53,5 +53,11 @@ integration-check-schemas:
 
 integration-check-migrations:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_db_n2.IntegrationCheckMigrations -v
+
+load-fixtures:
+	PYTHONPATH=. $(PYTHON) -m fixtures.load
+
+integration-check-fixtures:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_fixtures_n3.IntegrationCheckFixtures -v
 
 all: validate test score queries dossier

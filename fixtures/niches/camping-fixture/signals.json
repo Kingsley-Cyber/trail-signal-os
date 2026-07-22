@@ -1,0 +1,106 @@
+{
+  "niche_id": "camping-fixture",
+  "candidate_id": "nc-001",
+  "candidate_title": "Portable camping fan",
+  "ad_intensity": {
+    "normalized_score": 0.35,
+    "note": "doc 08 §12 worked example; folded into competition scoring at Gate 5"
+  },
+  "signals": [
+    {
+      "signal_id": "sig_camping_demand",
+      "niche_id": "camping-fixture",
+      "signal_type": "demand",
+      "source": {"domain": "trailgearlab.example", "tier": "open"},
+      "window": {"from": "2026-01-01T00:00:00Z", "to": "2026-07-01T00:00:00Z"},
+      "normalized_score": 0.72,
+      "confidence": 0.8,
+      "observed_at": "2026-07-21T12:00:00Z",
+      "expires_at": "2026-09-21T12:00:00Z",
+      "derived_from": ["ev_camping_demand"],
+      "provenance": {
+        "code_version": "normalize-1.0.0",
+        "schema_version": "signal.v1",
+        "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-07-21T12:00:00Z"
+      },
+      "schema_version": "signal.v1"
+    },
+    {
+      "signal_id": "sig_camping_growth",
+      "niche_id": "camping-fixture",
+      "signal_type": "growth",
+      "source": {"domain": "youtube.com", "tier": "open"},
+      "window": {"from": "2026-01-01T00:00:00Z", "to": "2026-07-01T00:00:00Z"},
+      "normalized_score": 0.65,
+      "confidence": 0.55,
+      "observed_at": "2026-07-21T12:00:00Z",
+      "expires_at": "2026-08-21T12:00:00Z",
+      "derived_from": ["ev_camping_growth"],
+      "provenance": {
+        "code_version": "normalize-1.0.0",
+        "schema_version": "signal.v1",
+        "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-07-21T12:00:00Z"
+      },
+      "schema_version": "signal.v1"
+    },
+    {
+      "signal_id": "sig_camping_pain",
+      "niche_id": "camping-fixture",
+      "signal_type": "pain",
+      "source": {"domain": "trustcamp.example", "tier": "open"},
+      "window": {"from": "2026-01-01T00:00:00Z", "to": "2026-07-01T00:00:00Z"},
+      "normalized_score": 0.8,
+      "confidence": 0.75,
+      "observed_at": "2026-07-21T12:00:00Z",
+      "expires_at": "2027-01-21T12:00:00Z",
+      "derived_from": ["ev_camping_pain_1042", "ev_camping_pain_1108", "ev_camping_pain_1155"],
+      "provenance": {
+        "code_version": "normalize-1.0.0",
+        "schema_version": "signal.v1",
+        "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-07-21T12:00:00Z"
+      },
+      "schema_version": "signal.v1"
+    },
+    {
+      "signal_id": "sig_camping_competition",
+      "niche_id": "camping-fixture",
+      "signal_type": "competition",
+      "source": {"domain": "market.example", "tier": "defended"},
+      "window": {"from": "2026-01-01T00:00:00Z", "to": "2026-07-01T00:00:00Z"},
+      "normalized_score": 0.4,
+      "confidence": 0.7,
+      "observed_at": "2026-07-21T12:00:00Z",
+      "expires_at": "2026-09-05T12:00:00Z",
+      "derived_from": ["ev_camping_competition"],
+      "provenance": {
+        "code_version": "normalize-1.0.0",
+        "schema_version": "signal.v1",
+        "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-07-21T12:00:00Z"
+      },
+      "schema_version": "signal.v1"
+    },
+    {
+      "signal_id": "sig_camping_content",
+      "niche_id": "camping-fixture",
+      "signal_type": "content",
+      "source": {"domain": "tiktok.com", "tier": "hostile"},
+      "window": {"from": "2026-06-01T00:00:00Z", "to": "2026-07-01T00:00:00Z"},
+      "normalized_score": 0.68,
+      "confidence": 0.5,
+      "observed_at": "2026-07-21T12:00:00Z",
+      "expires_at": "2026-08-11T12:00:00Z",
+      "derived_from": ["ev_camping_content"],
+      "provenance": {
+        "code_version": "normalize-1.0.0",
+        "schema_version": "signal.v1",
+        "config_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-07-21T12:00:00Z"
+      },
+      "schema_version": "signal.v1"
+    }
+  ]
+}
