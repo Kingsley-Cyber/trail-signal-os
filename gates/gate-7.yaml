@@ -1,0 +1,58 @@
+version: "1.0"
+gate: 7
+phase: FULL_DOSSIER
+description: >
+  Gate 7 acceptance checklist (doc 09 §2 Gate 7, §6). Full dossier pipeline on
+  camping-fixture reproduces opportunity 0.72; lineage.trace complete to query_spec
+  leaves; lineage.replay reproduces the score byte-for-byte. Guards: all 12.
+doc_ref: docs/build/09_verification_harness.md
+
+acceptance_fixture:
+  niche: fixtures/niches/camping-fixture
+  expected_opportunity: fixtures/niches/camping-fixture/expected_opportunity.json
+  expected_score: 0.72
+  expected_confidence: 0.65
+  trace_leaf_kind: query_spec
+
+bootstrap_commands:
+  - make validate
+  - make test
+  - make verify-guards
+
+offline_checks:
+  - id: validate
+    command: make validate
+  - id: repo_tests
+    command: make test
+  - id: verify_guards
+    command: make verify-guards
+    note: all 12 poison tests must fire
+  - id: integration_freshness
+    command: make integration-check-freshness
+    note: N29 — expiry triggers re-collection
+  - id: integration_decide
+    command: make integration-check-decide
+    note: N30 — constraint-fit re-rank + rationale split
+  - id: integration_graph_defs
+    command: make integration-check-graph-defs
+    note: N31 — research.yaml + dossier.yaml compile & execute
+  - id: integration_job_hierarchy
+    command: make integration-check-job-hierarchy
+    note: N32 — dossier parent/child jobs; VALIDATE fan-out
+  - id: integration_acceptance
+    command: make integration-check-acceptance
+    note: N33 — camping-fixture → dossier → 0.72; trace complete; replay reproduces
+
+guards_active: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+guards_catalog_registered: 12
+guards_poison_suite: tests/fault_injection/test_poison_guards.py
+
+progress_ledger:
+  file: progress_ledger.csv
+  append_only: true
+
+goalpost_guard:
+  protected_paths:
+    - gates/
+    - fixtures/**/golden/
+    - fixtures/niches/camping-fixture/expected_opportunity.json

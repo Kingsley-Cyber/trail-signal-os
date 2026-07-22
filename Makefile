@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-node-executor integration-check-verifiers integration-check-compiler-executor integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp integration-check-enrich-worker integration-check-index-worker integration-check-governor integration-check-classify-normalize integration-check-confidence integration-check-coverage integration-check-score integration-check-explain integration-check-tiers integration-check-freshness integration-check-decide integration-check-graph-defs integration-check-job-hierarchy load-fixtures verify-guards gate-0
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations integration-check-fixtures integration-check-leases integration-check-scheduler integration-check-retries integration-check-reconciler integration-check-control-api integration-check-gateway integration-check-node-executor integration-check-verifiers integration-check-compiler-executor integration-check-search-worker integration-check-http-extract integration-check-media-worker integration-check-lineage integration-check-mcp integration-check-enrich-worker integration-check-index-worker integration-check-governor integration-check-classify-normalize integration-check-confidence integration-check-coverage integration-check-score integration-check-explain integration-check-tiers integration-check-freshness integration-check-decide integration-check-graph-defs integration-check-job-hierarchy integration-check-acceptance load-fixtures verify-guards gate-0 gate-7
 # Host has python3 only (docs/build/environment_profile.md §4)
 ifneq (,$(wildcard .venv/bin/python))
 PYTHON := .venv/bin/python
@@ -148,6 +148,9 @@ integration-check-graph-defs:
 integration-check-job-hierarchy:
 	PYTHONPATH=. $(PYTHON) -m unittest tests.test_job_hierarchy_n32.IntegrationCheckJobHierarchy -v
 
+integration-check-acceptance:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_acceptance_n33.IntegrationCheckAcceptance -v
+
 verify-guards:
 	PYTHONPATH=. $(PYTHON) -m guards.runner
 
@@ -162,5 +165,18 @@ gate-0:
 	$(MAKE) integration-check-fixtures; \
 	$(MAKE) verify-guards; \
 	echo "==> Gate 0 offline checks complete (live bootstrap: make bootstrap)"
+
+gate-7:
+	@set -e; \
+	echo "==> Gate 7 manifest: gates/gate-7.yaml"; \
+	$(MAKE) validate; \
+	$(MAKE) test; \
+	$(MAKE) verify-guards; \
+	$(MAKE) integration-check-freshness; \
+	$(MAKE) integration-check-decide; \
+	$(MAKE) integration-check-graph-defs; \
+	$(MAKE) integration-check-job-hierarchy; \
+	$(MAKE) integration-check-acceptance; \
+	echo "==> Gate 7 acceptance complete"
 
 all: validate test score queries dossier

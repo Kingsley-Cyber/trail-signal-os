@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T02:21:05Z"
+updated_at: "2026-07-22T02:23:50Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -459,6 +459,6 @@ nodes:
     gate: 7
     verifier: gate-7
     integration_check: "camping-fixture → dossier → 0.72; trace complete; replay reproduces"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: c6f97702c2056e13d473251787b442fb1046c508
