@@ -16,9 +16,9 @@ from fixtures.load import SCHEMAS_DIR
 from signal_engine.coverage import (
     build_grid_from_signals,
     evaluate_coverage_gate,
-    hard_required_met,
 )
 from signal_engine.normalize import NORMALIZE_VERSION
+from signal_engine.tiers import apply_hostile_dependence_cap, compute_hostile_dependent
 
 CODE_VERSION = "score-1.0.0"
 SCORING_VERSION = CODE_VERSION
@@ -214,34 +214,6 @@ def _axis_inputs(
     return normalized, confidences, shrunk
 
 
-def _compute_hostile_dependent(
-    *,
-    niche_id: str,
-    signals: Sequence[Mapping[str, Any]],
-    as_of: str,
-    min_cell_confidence: float,
-) -> bool:
-    full_grid = build_grid_from_signals(
-        niche_id=niche_id,
-        signals=signals,
-        updated_at=as_of,
-    )
-    if not hard_required_met(full_grid, min_cell_confidence=min_cell_confidence):
-        return False
-
-    without_hostile = [
-        signal
-        for signal in signals
-        if str(signal.get("source", {}).get("tier", "")) != "hostile"
-    ]
-    reduced_grid = build_grid_from_signals(
-        niche_id=niche_id,
-        signals=without_hostile,
-        updated_at=as_of,
-    )
-    return not hard_required_met(reduced_grid, min_cell_confidence=min_cell_confidence)
-
-
 def compute_score_result(
     signals: Sequence[Mapping[str, Any]] | Mapping[str, Any],
     weights: Mapping[str, Any],
@@ -299,14 +271,16 @@ def compute_score_result(
     raw_final = max(0.0, min(1.0, raw_final))
 
     raw_confidence = _geometric_mean([confidences[axis] for axis in REQUIRED_CONFIDENCE_AXES])
-    hostile_dependent = _compute_hostile_dependent(
+    hostile_dependent = compute_hostile_dependent(
         niche_id=niche_id,
         signals=signal_items,
         as_of=as_of,
         min_cell_confidence=min_cell_confidence,
     )
-    if hostile_dependent:
-        raw_confidence = min(raw_confidence, 0.50)
+    raw_confidence = apply_hostile_dependence_cap(
+        raw_confidence,
+        hostile_dependent=hostile_dependent,
+    )
 
     subscores = {
         "demand": _round_subscore(shrunk["demand"]),

@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T02:01:20Z"
+updated_at: "2026-07-22T02:06:00Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -392,9 +392,9 @@ nodes:
     gate: 6
     verifier: gate-6
     integration_check: "discount + hostile-dependence cap; tier-loss → no evasion (g10); lineage.replay/diff"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 31a8a8b980e86ab49f86f3f1ba1ab21a005be220
 
   # ── FULL DOSSIER → Gate 7 ────────────────────────────────────────
   - id: N29

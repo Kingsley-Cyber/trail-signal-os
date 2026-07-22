@@ -28,3 +28,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T01:54:54Z,N25,5,PASS,a59c0bbe19113796c9be851d6f38b3264b24627e,validate+test+verify-guards+slop-approve,,coverage gate admit or scores-with-gaps
 2026-07-22T01:57:13Z,N26,5,PASS,d86c25f204596e831d45f9768c72050acc164cb0,validate+test+verify-guards+slop-approve,,camping-fixture → 0.72; g12 reproducible
 2026-07-22T02:01:20Z,N27,5,PASS,5529a1cb5dc4d4071f61805ea899d671796176fa,validate+test+verify-guards+slop-approve,,explains never scores; g5 green
+2026-07-22T02:06:00Z,N28,6,PASS,31a8a8b980e86ab49f86f3f1ba1ab21a005be220,validate+test+verify-guards+slop-approve,,tiers wired into score; hostile cap; g10; Gate6

@@ -6,11 +6,13 @@ import math
 from datetime import datetime, timezone
 from typing import Any, Mapping
 
+from signal_engine.tiers import DEFAULT_TIER_WEIGHT, TierError, tier_weight_for
+
 CODE_VERSION = "confidence-1.0.0"
 CONFIDENCE_VERSION = CODE_VERSION
 
 DEFAULT_WEIGHTS = {"w_n": 0.45, "w_t": 0.30, "w_r": 0.25}
-TIER_WEIGHT = {"open": 1.00, "defended": 0.85, "hostile": 0.50}
+TIER_WEIGHT = DEFAULT_TIER_WEIGHT
 N_REF = {
     "demand": 50,
     "growth": 30,
@@ -72,11 +74,10 @@ def compute_signal_confidence(
     if not math.isclose(weight_sum, 1.0, rel_tol=0.0, abs_tol=1e-9):
         raise ConfidenceError("confidence weights must sum to 1")
 
-    active_tier_weight = dict(TIER_WEIGHT)
     if tier_weight is not None:
-        active_tier_weight.update(tier_weight)
-    if source_tier not in active_tier_weight:
-        raise ConfidenceError(f"unsupported source tier: {source_tier!r}")
+        active_tier_weight = dict(tier_weight)
+    else:
+        active_tier_weight = dict(DEFAULT_TIER_WEIGHT)
 
     active_n_ref = dict(N_REF)
     if n_ref is not None:
@@ -95,7 +96,10 @@ def compute_signal_confidence(
     sample_term = _sat(
         math.log1p(sample_n) / math.log1p(n_reference),
     )
-    tier_term = active_tier_weight[source_tier]
+    try:
+        tier_term = tier_weight_for(source_tier, tier_weight=active_tier_weight)
+    except TierError as exc:
+        raise ConfidenceError(str(exc)) from exc
     age = _age_days(window_to=window_to, as_of=as_of)
     recency_term = math.exp(-age / half_life)
 
