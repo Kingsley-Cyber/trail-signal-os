@@ -11,3 +11,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T00:20:28Z,N8,1,PASS,75d74410f7da5da8471bf2c3e9bf1a8d3618a9ca,validate+test+integration-check-retries+verify-guards+slop-approve,,
 2026-07-22T00:23:09Z,N9,1,PASS,d1e38ce2f6a279dcbe1217b661eb540b202fc60c,validate+test+integration-check-reconciler+verify-guards+slop-approve,,
 2026-07-22T00:29:03Z,N10,1,PASS,1e43cb4a68fbb1d4095e01ead7c7206672172e72,validate+test+integration-check-control-api+verify-guards+slop-approve,,Gate1 control core complete
+2026-07-22T00:34:32Z,N15,1,PASS,e144db7300dfab04665995be1d7b21c68a2996bd,validate+test+integration-check-search-worker+verify-guards+slop-approve,,SearXNG fixture → query_specs+urls+lineage

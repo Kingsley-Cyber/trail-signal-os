@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:29:03Z"
+updated_at: "2026-07-22T00:34:32Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -221,9 +221,9 @@ nodes:
     gate: 1
     verifier: searxng-fixture
     integration_check: "SearXNG (fixture) → query_specs"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: e144db7300dfab04665995be1d7b21c68a2996bd
 
   - id: N16
     name: http+extract
