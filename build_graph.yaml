@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-21T23:56:10Z"
+updated_at: "2026-07-22T00:00:35Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -54,9 +54,9 @@ nodes:
     gate: 0
     verifier: migrations-apply
     integration_check: "migrations apply; unique constraints + indexes exist (guard 3)"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 33db4aeac622859e42cbbb0e743b9c603917b0ff
 
   - id: N3
     name: fixtures

@@ -1,4 +1,4 @@
-.PHONY: validate test score queries dossier all bootstrap down integration-check-infra
+.PHONY: validate test score queries dossier all bootstrap down migrate integration-check-infra integration-check-migrations
 # Host has python3 only (docs/build/environment_profile.md §4)
 PYTHON ?= python3
 COMPOSE ?= docker compose
@@ -30,11 +30,16 @@ bootstrap:
 	if [ -f .env ]; then set -a; . ./.env; set +a; fi; \
 	$(COMPOSE) up -d --wait $(BOOTSTRAP_SERVICES); \
 	echo "==> N0 complete: Postgres :$${POSTGRES_PORT:-5433} and Redis :$${REDIS_PORT:-6380} healthy"; \
-	echo "==> Deferred (N2): migrate — db/migrations/ not yet available"; \
+	$(MAKE) migrate; \
 	echo "==> Deferred (N3): load fixtures + cassettes"; \
 	echo "==> Deferred: Ollama model pull on native host"; \
 	echo "==> External: SearXNG via Polymath at host :8080 (no compose service)"; \
-	echo "==> Gate 0 not complete until migrate + fixtures (N2, N3)"
+	echo "==> Gate 0 not complete until fixtures load (N3)"
+
+migrate:
+	@set -e; \
+	if [ -f .env ]; then set -a; . ./.env; set +a; fi; \
+	PYTHONPATH=. $(PYTHON) -m db.repositories.migrate
 
 down:
 	$(COMPOSE) down
@@ -45,5 +50,8 @@ integration-check-infra:
 
 integration-check-schemas:
 	PYTHONPATH=src $(PYTHON) -m unittest tests.test_schemas_n1.IntegrationCheckSchemas -v
+
+integration-check-migrations:
+	PYTHONPATH=. $(PYTHON) -m unittest tests.test_db_n2.IntegrationCheckMigrations -v
 
 all: validate test score queries dossier
