@@ -1,0 +1,43 @@
+# Versioned scoring weights (doc 08 §8). Bump version when tuning; never hand-edit scores.
+version: "w-2026.07.21"
+
+axis_weights:
+  demand: 0.25
+  growth: 0.15
+  pain: 0.25
+  competition: 0.20
+  content: 0.15
+
+competition_components:
+  listing_density: 0.6
+  ad_intensity: 0.4
+
+interactions:
+  lambda_gap: 0.15
+  lambda_pain: 0.15
+
+confidence:
+  w_n: 0.45
+  w_t: 0.30
+  w_r: 0.25
+
+tier_weight:
+  open: 1.00
+  defended: 0.85
+  hostile: 0.50
+
+n_ref:
+  demand: 50
+  growth: 30
+  pain: 40
+  competition: 100
+  content: 60
+
+min_cell_confidence: 0.40
+
+half_life_days:
+  demand: 60
+  growth: 30
+  pain: 180
+  competition: 45
+  content: 21

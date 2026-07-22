@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T01:54:54Z"
+updated_at: "2026-07-22T01:57:13Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -366,9 +366,9 @@ nodes:
     gate: 5
     verifier: score-repro
     integration_check: "reproducible (g12); camping-fixture → 0.72"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: d86c25f204596e831d45f9768c72050acc164cb0
 
   - id: N27
     name: explain
