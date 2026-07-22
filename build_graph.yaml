@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:47:15Z"
+updated_at: "2026-07-22T00:51:04Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -250,9 +250,9 @@ nodes:
     gate: 1
     verifier: lineage-edges
     integration_check: "edges/trace (g6); replay/diff validated at Gate 6"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: a8648be8af4af53648eb3682a4ac8fa8805f2493
 
   # ── MEDIA + MCP → Gate 2 ─────────────────────────────────────────
   - id: N18

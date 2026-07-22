@@ -13,3 +13,4 @@ timestamp,node_id,gate,verdict,commit_sha,checks_passed,checks_failed,notes
 2026-07-22T00:29:03Z,N10,1,PASS,1e43cb4a68fbb1d4095e01ead7c7206672172e72,validate+test+integration-check-control-api+verify-guards+slop-approve,,Gate1 control core complete
 2026-07-22T00:34:32Z,N15,1,PASS,e144db7300dfab04665995be1d7b21c68a2996bd,validate+test+integration-check-search-worker+verify-guards+slop-approve,,SearXNG fixture → query_specs+urls+lineage
 2026-07-22T00:47:15Z,N16,1,PASS,bb74df95cb94aaf78d069840425898cab6df292a,validate+test+integration-check-http-extract+verify-guards+slop-approve,,fetch fixture→page.v1→lineage; Guard7 persist_artifact
+2026-07-22T00:51:04Z,N17,1,PASS,a8648be8af4af53648eb3682a4ac8fa8805f2493,validate+test+integration-check-lineage+verify-guards+slop-approve,,Gate1 vertical slice complete (edges/trace)

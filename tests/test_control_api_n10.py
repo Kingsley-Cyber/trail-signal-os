@@ -269,7 +269,7 @@ class ControlApiRouteTests(unittest.TestCase):
             self.assertEqual(domain.json()["domain"], "example.com")
             self.assertFalse(domain.json()["profile_loaded"])
 
-    def test_lineage_routes_return_not_implemented(self) -> None:
+    def test_lineage_routes_are_registered(self) -> None:
         readiness = ReconcilerReadiness()
         readiness.mark_ready()
         app = create_app(
@@ -277,13 +277,11 @@ class ControlApiRouteTests(unittest.TestCase):
             readiness=readiness,
             run_startup_reconciler=False,
         )
-        with TestClient(app) as client:
-            trace = client.get("/v1/lineage/trace/art_test")
-            self.assertEqual(trace.status_code, 501)
-            diff = client.get("/v1/lineage/diff")
-            self.assertEqual(diff.status_code, 501)
-            replay = client.post("/v1/lineage/replay")
-            self.assertEqual(replay.status_code, 501)
+        paths = app.openapi()["paths"]
+        self.assertIn("/v1/lineage/trace/{artifact_id}", paths)
+        self.assertIn("/v1/lineage/edges", paths)
+        self.assertIn("/v1/lineage/diff", paths)
+        self.assertIn("/v1/lineage/replay", paths)
 
 
 @unittest.skipUnless(_postgres_available(), "Postgres unavailable (need .env POSTGRES_*)")
