@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:55:45Z"
+updated_at: "2026-07-22T00:59:40Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -275,9 +275,9 @@ nodes:
     gate: 2
     verifier: gate-2
     integration_check: "create_job/status/bundle round-trip; dup-message→one result"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: 81c3cd7b6c2d7586eadcc86b0e6909e5fcdedea3
 
   # ── ENRICH + INDEX → Gate 3 ──────────────────────────────────────
   - id: N20
