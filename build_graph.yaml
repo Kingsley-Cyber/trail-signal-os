@@ -3,7 +3,7 @@
 # Maintained by BUILD ORCHESTRATOR. Do not invent nodes.
 
 version: "1.0"
-updated_at: "2026-07-22T00:34:32Z"
+updated_at: "2026-07-22T00:47:15Z"
 mermaid_path: build_graph.mmd
 
 nodes:
@@ -234,9 +234,9 @@ nodes:
     gate: 1
     verifier: gate-1
     integration_check: "fetch fixture URL → page.v1 → lineage edge"
-    status: PENDING
+    status: DONE
     max_fix_attempts: 6
-    commit: null
+    commit: bb74df95cb94aaf78d069840425898cab6df292a
 
   - id: N17
     name: lineage
